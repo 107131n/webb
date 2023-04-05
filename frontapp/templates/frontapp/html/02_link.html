@@ -1,0 +1,26 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::HTML - Link 처리:::</title>
+</head>
+<body>
+    <h3>HTML - Link 처리</h3>
+    <hr/>
+    <a href="http://www.daum.net">daum.net으로</a>
+    <a href="http://www.naver.com">naver.com으로</a>
+    <a href="http://www.google.com">google.com으로</a>
+    <a href="/front/01_html/">
+        <img src = "/static/frontapp/images/img1.jpg" 
+        width="100" height="80">
+        <img src = "{% static 'frontapp/images/img1.jpg' %}" 
+        width="200" height="180">
+    </a>
+    <a href="#">Link 처리 안 됨</a>
+
+
+</body>
+</html>

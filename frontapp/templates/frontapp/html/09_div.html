@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::HTML - div 레이아웃 처리:::</title>
+    <style>
+        /* 상단 영역 스타일 적용: header */
+        #header {
+            background-color: black;
+            color: whitesmoke;
+            text-align: center;
+            padding: 5px;
+        }
+        /* 네비게이션(카테고리) 메뉴 스타일 적용: nav */
+        #nav {
+            background-color: honeydew;
+            width: 100%;
+            height: 30px;
+            padding: 5px;
+            text-align: center;
+        }
+        /* 본문 영역 스타일 적용: section1 */
+        #section1 {
+            background-color: lightsteelblue;
+            color: azure;
+            padding: 10px;
+            /**/
+            float: left;
+            width: 20%;
+        }
+        /* 본문 영역 스타일 적용: section2 */
+        #section2 {
+            background-color: lightblue;
+            color: white;
+            padding: 10px;
+            float: left;
+            width: 20%;
+        }
+        /* 하단 영역 스타일 적용: footer */
+        #footer {
+            background-color: lightgray;
+            text-align: center;
+            padding: 5px;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <!-- 상단 영역 -->
+    <div id = "header">
+    <h3>HTML - div 레이아웃 처리</h3>
+    </div>
+    <!-- 카테고리-네비게이션 영역 -->
+    <div id = "nav">
+        <a href = "http://www.daum.net">Daum</a>
+        <a href = "http://www.naver.com">Naver</a>
+        <a href = "http://www.google.net">Google</a>
+    </div>
+    <!-- 본문 내용 -->
+    <div id = "section1">
+        <h3>공지 사항</h3>
+        <ul>
+            <li>[필독] 금일 공지 사항</li>
+            <li>[필독] 금일 공지 사항</li>
+            <li>[필독] 금일 공지 사항</li>
+            <li>[필독] 금일 공지 사항</li>
+            <li>[필독] 금일 공지 사항</li>
+        </ul>
+    </div>
+    <div id = "section2">
+        <h3>질문/ 답변</h3>
+        <ul>
+            <li>[필독] 금일 질문</li>
+            <li>[필독] 금일 질문</li>
+            <li>[필독] 금일 질문</li>
+            <li>[필독] 금일 질문</li>
+            <li>[필독] 금일 질문</li>
+        </ul>
+    </div>
+    <!-- 하단 영역 -->
+    <div id = "footer">
+        Copyright c Corp. All rights reserved.
+    </div>
+</body>
+</html>

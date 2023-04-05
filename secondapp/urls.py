@@ -8,4 +8,5 @@ urlpatterns = [
     ### http://127.0.0.1:8000/second/
     path('', views.index),
     path('index/', views.index),
+    ### http://127.0.0.1.8000/second/css_test
 ]

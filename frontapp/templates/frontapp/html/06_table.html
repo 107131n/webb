@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::HTML - Table 처리:::</title>
+    <style>
+        table {
+            /*테이블의 테두리 라인 설정*/
+            border: 1px solid black;
+
+            /*두 줄 라인을 한 줄로 설정*/
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            /*가운데 정렬하기*/
+            text-align: center;
+        }
+        th{
+            background-color: lightsalmon;
+        }
+    </style>
+</head>
+<body>
+{{c_list}}
+    <h3>HTML - Table 처리</h3>
+    <hr/>
+    <!-- table: 행렬 데이터 그리기 -->
+    <table border="1">
+        <!-- tr: 행(row)을 담당 -->
+        <tr>
+            <!-- th: 컬럼 제목(header) -->
+            <th width="100">아이디</th>
+            <th width="100">이름</th>
+            <th width="100">주소</th>
+        </tr>
+        <!-- 데이터 추가하기 -->
+        {%for d in c_list %}
+        <tr>
+            <!-- 각 컬럼에 데이터 넣기 -->
+            <td>{{d.id}}</td>
+            <td>{{d.name}}</td>
+            <td>{{d.addr}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::테이블 행 단위 색 입히기:::</title>
+    <style>
+        table{
+            /* 한 줄 선 그리기 */
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td{
+            padding: 8px;
+            text-align: center;
+        }
+        /* tr 태그 영역에 마우스가 올라갔을 때 스타일을 지정하는 방식*/
+        tr:hover {
+            background-color: honeydew;
+        }
+    </style>
+</head>
+<body>
+    <h3>테이블 행 단위 색 입히기</h3>
+    <hr/>
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>강형구</td>
+            <td>펜타곤</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>이승협</td>
+            <td>엔플라잉</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>이도현</td>
+            <td>배우</td>
+        </tr>
+    </table>
+</body>
+</html>

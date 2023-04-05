@@ -1,0 +1,107 @@
+<secondapp에서 진행>
+*http://127.0.0.1.8000/second/css_test
+*views 함수 이름: cssTestView()
+*패턴: css_test/
+*html: css_test.html
+--css 적용 연습.. 태그 내/내부/외부..
+
+일기
+
+0405
+
+*http://127.0.0.1.8000/front/01_html/
+*views 함수 이름: htmlView01()
+*html: 01_html.html
+
+
+[링크 처리]
+
+1. 링크 4개 만들기
+ 1) daum.net
+ 2) naver.com
+ 3) google.com
+ 4) 강아지 이미지 클릭하면 > 01_html.html 페이지 내용 보여주기
+2. html 파일: 02_link.html
+3. 함수 이름: linkView()
+4. url 패턴: 02_link
+
+
+-------------------------------------------------------------
+1. 02_link 페이지의 링크 처리를 Javascript 함수 호출 방식으로 수정
+2. html 파일: 03_link.html
+3. 함수 이름: linkView2()
+4. url 패턴: 03_link
+
+1. html 파일: 04_css.html
+-css 처리 페이지
+3. 함수 이름: cssView2()
+4. url 패턴: 04_css
+
+
+1. html 파일: 05_table.html
+-table 페이지
+3. 함수 이름: tableView()
+4. url 패턴: 05_table
+
+
+1. html 파일: 07_ul.html
+-UL 페이지
+3. 함수 이름: ulView()
+4. url 패턴: 07_ul
+
+
+1. html 파일: 08_div.html
+-div 페이지
+3. 함수 이름: divView()
+4. url 패턴: 08_div
+
+
+-1,3 div 배경색, 폰트색
+-2,4 div 배경색, 폰트색
+
+
+1. html 파일: 09_div.html
+-div 페이지
+3. 함수 이름: divView2()
+4. url 패턴: 09_div
+
+
+1. html 파일: 10_iframe.html
+-iframe 페이지
+3. 함수 이름: iframeView()
+4. url 패턴: 10_iframe
+
+
+-----------------css------------------
+
+1. html 파일: 01_table.html
+3. 함수 이름: cssTableView()
+4. url 패턴: 01_cssTable
+
+
+01_table.html에서
+- 제목 포함 5행 3열의 테이블 생성
+- 각 열의 제목: 번호, 이름, 주소
+- 데이터는 임의로 넣어주세요.
+
+* 스타일 적용하기
+- table: 한 줄 선 그리기, 너비 100%
+- th, td: 내부 여백 8px, 텍스트 중앙 정렬
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

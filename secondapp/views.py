@@ -8,3 +8,7 @@ def second(request):
 def index(request):
     return render(request,
                   'secondapp/index.html')
+
+def cssTestView(request):
+    return render(request,
+                  'secondapp/css_test.html')

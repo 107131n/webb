@@ -1,0 +1,159 @@
+4/4
+
+<웹 프로젝트 형상 생성 순서>
+
+[작업 폴더 위치 무관]
+1. 가상환경 만들기
+2. 커널 연결(jupyter notebook 설치 후 커널 연결)
+3. 가상환경으로 activate(활성화) 들어가기
+4. 기본 라이브러리 설치
+5. 장고 설치
+6. 오라클 설치
+
+[작업 폴더 위치로 이동 후 진행]
+1. 장고 프로젝트(config) 생성
+  - 서버 실행 테스트
+  - settings.py 환경 설정
+  - 서버 실행 테스트
+
+2. 장고 프로그램 폴더 app 생성
+  - app 등록하기: settings.py > installed app
+  - 페이지 만들기: views.py > 함수 생성
+				  >> 함수에서 html 정의
+		     : templates/xxxapp/html 파일 생성
+  - URL 패턴 정의: views.py의 함수 호출 영역
+     path('url', views.함수 이름) 
+
+3. 서버 실행 잘 되는지 테스트
+  - http://127.0.0.1:8000/url 패턴 이름
+
+
+
+<사용자 입장에서의 프로그램 순서>
+
+1. 브라우저에서 URL 입력
+  - http://127.0.0.1:8000/url 패턴 이름
+8000 포트 사용하는 이유: 8000호, 메모리 영역을 찾기 위함
+
+2. http://127.0.0.1:8000 서버 찾아가기
+  - 찾은 다음 쉬에 있는 url 패턴 이름을 어플리케이션 영역으로 넘김..
+  - 어플리케이션 영역: 작업 디렉토리 내부 프로그램 파일들
+
+3. url 패턴 이름 처리
+  - config/urls.py에서 제일 처음으로 이름을 받아서 처리
+  - 각각의 app에서 처리할 수 있게 지정 또는 직접 앱의 함수 호출
+  - http://127.0.0.1:8000/1번 패턴/2번 패턴
+1번 패턴: config의 urls에서 직접 호출 가능
+2번 패턴: 해당 앱에서 urls에서 호출
+
+4. 함수 호출 처리: 각 app에 있는 view.py
+ - 0. request에서 사용자 정보 추출하기 
+ - 1. DB 처리
+ - 2. DB 처리된 내용을 html 페이지에 넣어서 사용자에게 리턴
+
+
+MVT
+models.py - DB 처리, SQL(X) 함수(객체) 기반
+views.py - 컨트롤
+templates - html
+-> urls.py
+
+
+client(사용자): 웹 브라우저(크롬)
+URL로 요청(request) 
+  |
+HTML로 응답(response) 
+server(서버): django(웹서버), oracle(DB서버),tool(vscode)
+
+사용자-입력 내용
+           -사용자 IP 주소 <- HTML 
+
+
+
+
+-------------------------------------------------------------------------------
+
+** mainapp에서
+- url: http://127.0.0.1:8000/main/main/ 패턴으로 요청이 들어오면
+- view에 함수 main()을 생성
+- html은 main.html 생성
+   -> 내용은 "mainapp의 main 페이지 입니다." 보여지게 처리
+
+** SecondApp [바로 가기], MainApp [바로 가기] 추가 하기
+- 각 app의 html에서 [인덱스로 가기] 추가
+
+
+[앱 생성하기]
+1. 앱 이름 frontapp 생성
+2. http://127.0.0.1:8000/front로 요청이 들어오면
+3. frontapp의 index.html 페이지를 생성해서 
+--> "front 페이지입니다." 보여지게 .. 처리
+4. 그리고, 최초 인덱스 페이지에 frontapp[바로 가기]
+	frontapp index 페이지에는 [인덱스로 가기] 추가
+
+
+--------------------------[frontapp에서 진행]------------------------------
+*http://127.0.0.1.8000/front/image/
+*views 함수 이름: imageView()
+*패턴: image/
+*html: 01_image.html
+--"이미지 테스트" 출력 되도록..
+
+[frontapp의 index.html]에서
+-image테스트 [바로 가기] 링크 생성하기
+
+[frontapp의 01_image.html]에서
+- frontapp의 index.html 페이지로 가는 링크 생성하기
+- "FrontApp 인덱스: [바로 가기]"
+
+
+*http://127.0.0.1.8000/front/css_1/
+*views 함수 이름: cssView1()
+*패턴: css_1/
+*html: 02_css1.html
+--"css 테스트" 출력 되도록..
+
+
+*http://127.0.0.1.8000/front/css_2/
+*views 함수 이름: cssView2()
+*패턴: css_2/
+*html: 02_css2.html
+--02_css1.html 복사 사용..
+
+
+*http://127.0.0.1.8000/front/css_3
+*views 함수 이름: cssView3()
+*패턴: css_3
+*html: 02_css3html
+--02_css1.html 복사 사용..
+
+
+<secondapp에서 진행>
+*http://127.0.0.1.8000/second/css_test
+*views 함수 이름: cssTestView()
+*패턴: css_test/
+*html: css_test.html
+--css 적용 연습.. 태그 내/내부/외부..
+
+
+----------------------------------------------------------------
+
+*http://127.0.0.1.8000/front/javascript1/
+*views 함수 이름: javascriptView1()
+*패턴: javascript1/
+*html: 01_javascript1.html
+*h3 > "자바스크립트 -1" 제목 달기
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

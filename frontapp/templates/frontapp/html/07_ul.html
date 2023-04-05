@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::HTML - UL 처리:::</title>
+    <style>
+        /* ul 태그에 스타일 지정하기 */
+        ul {
+            /* 표식 사용하지 않기 */
+            /* list-style-type: none; */
+
+            /* ● 채워진 원 표시*/
+            /* list-style-type: disc; */
+
+            /* ■ 채워진 사각형 표시 */
+            list-style-type: square;
+        }
+    /* > 직계, ' ' 자손*/
+    ul.menu > li{
+        display: inline;
+
+        }
+    ul.menu li a{
+        /* 배경색: 검정 글자색: 흰색
+            안쪽 여백: 10px */
+        background-color: black;
+        color: lime;
+        padding: 10px 20px 30px 40px;
+        /* 언더라인 제거하기 */
+        text-decoration: none;
+        /* 사각 영역의 각 모서리를 라운드 표시하기 */
+        border-radius: 4px 4px 0px 0px;
+    }
+    </style>
+
+</head>
+<body>
+    <h3>HTML - UL, OL, DL 처리</h3>
+    <hr/>
+    <h5>[표식]을 이용하여 목록 생성하기</h5>
+    <ul>
+        <li>커피</li>
+        <li>차</li>
+        <li>우유</li>
+    </ul>
+    <h5>번호/알파벳을 이용하여 목록 표시하기</h5>
+    <ol type = "1">
+        <li>커피</li>
+        <li>차</li>
+        <li>우유</li>
+    </ol>
+    <!-- 알파벳 대문자로 표시하기 -->
+    <ol type = "A">
+        <li>커피</li>
+        <li>차</li>
+        <li>우유</li>
+    </ol>
+    <!-- 알파벳 소문자로 표시하기 -->
+    <ol type = "a">
+        <li>커피</li>
+        <li>차</li>
+        <li>우유</li>
+    </ol>
+    <!-- 로마자 소문자로 표시하기 -->
+    <ol type = "I">
+        <li>커피</li>
+        <li>차</li>
+        <li>우유</li>
+    </ol>
+    <!-- 제목/설명 목록 형태 -->
+    <dl>
+        <dt>커피</dt>
+            <dd>- 아메리카노, 카페라떼, 바닐라라떼</dd>
+        <dt>차(tea)</dt>
+            <dd>- 녹차, 유자차, 홍차</dd>
+    </dl>
+    <!-- 표식 기호 목록을 중첩해서 사용 가능 -->
+    <ul>
+        <li>커피
+            <ul>
+                <li>아메리카노</li> 
+                <li>카페라떼</li>  
+                <li>모카라떼
+                    <ul>
+                        <li>바닐라라떼</li>
+                    </ul>
+                </li> 
+            </ul>
+        </li>
+        <li>차(tea)
+            <ul>
+                <li>녹차</li> 
+                <li>홍차</li>  
+                <li>유자차</li>
+            </ul>
+        </li>
+        <li>우유</li>
+    </ul>
+
+    <!-- 표식 방법을 이용해서 메뉴 만들기 -->
+    <ul class = "menu">
+        <li><a href="/front/01_html/">커피</a></li>
+        <li><a href="/front/02_link/">차(tea)</a></li>
+        <li><a href="/front/04_css/">음료수</a></li>
+        <li><a href="/front/06_table/">기타</a></li>
+    </ul>
+</body>
+</html>
