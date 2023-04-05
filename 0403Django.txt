@@ -1,0 +1,281 @@
+4/3
+
+Django
+
+<아나콘다 환경 -> 가상환경 생성하기>
+
+
+* 가상환경 목록 확인
+>conda env list
+
+
+* install 라이브러리 확인
+>conda list
+>pip list
+
+
+--> <아래는 폴더의 위치 무관>
+*가상환경 생성하기
+>conda create -n 가상환경 이름 python=버전
+>conda create -n gj_django python=3.9
+
+
+가상환경 설치가 가장 먼저임
+베이스에는 가상환경 설치 안 함
+
+
+*가상환경 삭제하기
+>conda env remove -n 가상환경이름
+>conda env remove -n gj_django
+
+
+*가상환경 활성화(들어가기)
+>conda activate gj_django
+
+
+*주피터 노트북 설치하기
+>pip install jupyter notebook
+커널: 가상환경 통로
+
+
+*주피터 노트북 실행하기
+-실행 시 폴더 위치 지정
+>cd/
+>cd gj_202304
+>jupyter notebook
+토큰: 자동 접근 가능하게 함
+
+
+* 가상환경 커널 생성(연결)하기
+>python -m ipykernel install --user --name gj_202304 --display-name gj_202304_kernel
+
+
+*커널 목록 확인하기
+> jupyter kernelspec list
+
+
+*커널 삭제하기
+>jupyter kernelspec uninstall gj_django
+커널 삭제->가상환경 삭제(사실 순서 상관 없음)
+
+
+<기본적으로 설치해 두면 편한 라이브러리 설치>
+>pip install ipython jupyter matplotlib pandas xlrd seaborn scikit_learn
+
+>pip install openpyxl
+
+
+<웹서버 django 설치하기>
+>conda install -c conda-forge django==4.0.1
+conda==가상환경 내에서만, 예민하게 가장 최적화된 버전 찾아줌
+pip=범용, 다른 라이브러리에서도 사용 가능
+
+
+<오라클 라이브러리 설치하기>
+>pip install cx_oracle
+
+
+<설치 명령>
+pip install 라이브러리=버전
+conda install 라이브러리==버전
+conda install -c conda-forge 라이브러리==버전
+==> 버전은 지정 안 해도 됨..
+==> 가급적 버전을 지정하면 좋은 라이브러리
+	:django, tensorflow
+
+
+(gj_202304) C:\gj_202304>
+가상환경          디렉토리
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<아래부터는 디렉토리 위치 지정>
+
+*장고 웹 서버 구축(프로젝트 생성)
+>django-admin startproject config .
+				 프로젝트 이름
+config: 환경 설정
+manage.py: 웹서버 구동 및 중지 시 사용
+
+
+*웹서버 구동(시작)하기
+>python manage.py runserver
+
+
+*웹서버 종료하기
+- Ctrl  + C
+
+*VS-Code 열기
+작업디렉토리>code .
+
+
+*환경 설정: config/settings.py
+- ALLOWED_HOSTS = ['127.0.0.1',
+			     'localhost',
+			     '10.10.21.63',
+			      'naver.com'] 
+			     최초 접근하는 ip 주소 또는 도메인
+
+ipconfig -all: IPv4 주소 확인 가능
+
+
+<장고 프로그램 app 생성하기>
+- django-admin startapp xxxapp이름
+>django-admin startapp firstapp
+config와 app은 한 세트
+
+
+<xxx app 폴더 생성 이후 필수>
+- settings.py 파일에서
+- INSTALLED_APPS = [firstapp,]안에 app 이름을 추가해야 함
+
+
+from - 폴더 경로 또는 폴더 경로+파일명
+import -from에서 폴더 경로: 파일명
+	-from에서 파일명: 클래스명(대문자) 또는 함수명
+
+from firstapp import views
+urlpatterns = [
+    ### http://127.0.0.1:8000/testpage/
+
+    path('testpage/', views.testPage),
+
+    path('admin/', admin.site.urls),
+]
+
+
+<실습>
+- 작업폴더 c:\test 폴더 생성
+- 가상환경 이름: test_django 생성
+  > 커널 연결
+  > 가상환경 활성화 후 기본 라이브러리 및 장고까지 모두 설치
+- 프로젝트 config 생성
+- secondapp 생성하기
+- url: http:127.0.0.1:8000/second를 브라우저에서 입력
+- second.html 생성
+   내용: 이곳은 second 페이지 입니다. 보여주기..
+
+
+<실습>
+- secondapp에서 아래 처리하기
+- config/urls.py에서는 secondapp으로 넘겨서 url 관리
+- http://127.0.0.1:8000/second/index
+- index.html 페이지 생성
+  내용: "second index 페이지입니다." 보여주기
+
+
+
+
+<코드 작성 순서 정리>
+1. view.py 함수 생성
+- html 파일 지정
+
+2. templatets > xxxapp
+- html 생성
+
+3. xxxapp / urls.py
+- path(url 패턴 이름 지정, 함수 호출)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+행간 복사) alt shift 방향키 상하
+탭 왼쪽으로) shift tab
+
+950 1910 4695
+1234
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

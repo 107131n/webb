@@ -9,3 +9,10 @@ def index(request):
                   {})
 
     # return HttpResponse("GO GO ...")
+
+### main 페이지
+def main(request):
+    return render(request, 
+                  "mainapp/main.html",
+                  {})
+    # return HttpResponse('mainapp !')

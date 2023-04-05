@@ -1,0 +1,34 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::css3 Page:::</title>
+    <!--외부 방식-->
+    <link href="/static/frontapp/css/front.css"
+          rel="stylesheet"
+          type="text/css">
+
+    <link href="{% static '/frontapp/css/front.css' %}"
+        rel="stylesheet"
+        type="text/css">
+
+    <style>
+    h3 {
+        color: gold;
+    }
+    
+    </style>
+
+</head>
+<body >
+    <h3 style = "background-color: white;">
+    css3 테스트(외부 방식 css 적용)</h3> 
+
+    <hr/>
+    FrontApp 인덱스: 
+        <a href="/front/">[바로 가기]</a>
+</body>
+</html>

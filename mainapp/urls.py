@@ -7,7 +7,6 @@ from django.urls import path
 from . import views # .: 현재 위치
 
 urlpatterns = [
-    ### http://127.0.0.1:8000/
-    # path('', views.index),
-    # path('index/', views.index),   
+    ### http://127.0.0.1:8000/main/main/
+    path('main/', views.main )
 ]

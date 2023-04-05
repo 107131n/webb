@@ -18,6 +18,7 @@ from django.urls import path, include
 
 from mainapp import views 
 
+
 ###  from 뒤에 작성 규칙
 #   - 폴더 경로 또는 폴더 경로 + 파일명
 
@@ -37,6 +38,7 @@ urlpatterns = [
     ### http://127.0.0.1:8000/
     path('', views.index),
       ### http://127.0.0.1:8000/index
+
     path('index/', views.index), 
       
     # path('testpage/', v1.testPage),
@@ -49,6 +51,11 @@ urlpatterns = [
     ### http://127.0.0.1:8000/second/    
     path('second/', include('secondapp.urls')),
     
-    
-    path('admin/', admin.site.urls),
+    ### http://127.0.0.1:8000/main/main/
+    path('main/', include('mainapp.urls')),
+
+    ### http://127.0.0.1:8000/front/
+    path('front/', include('frontapp.urls')),
+          
+    # path('admin/', admin.site.urls),
 ]

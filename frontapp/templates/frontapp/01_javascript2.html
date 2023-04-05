@@ -1,0 +1,108 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::javascript2 Page:::</title>
+    <!--내부 방식 자바스크립트
+        -일반적으로 함수로 정의한 후 호출하여 사용
+    -->
+    <script type = "text/javascript">
+        // 한 줄 주석
+        /*
+            문단 단위 주석
+        */
+        function alertView(){
+            alert('알림창 띄우기');
+        }
+
+        // css1으로 가기
+        function goCss1(){
+            alert("goCss1() 함수가 호출되었습니다.");
+            location.href = "/front/css_1/";
+        }
+
+        // css2으로 가기
+        function goCss2(){
+            alert("goCss2() 함수가 호출되었습니다.");            
+            location.href = "/front/css_2/";
+        }
+
+        // css3으로 가기
+        function goCss3(){
+            alert("goCss3() 함수가 호출되었습니다.");
+            location.href = "/front/css_3/";
+        }
+
+        // 통합 함수
+        function goCss3(no){
+        alert("goCss() 함수가 호출되었습니다.");
+        location.href = "/front/css_"+no+"/";
+        }
+
+    </script>
+</head>
+<body>
+    <h3 onclick = "javascript:alert('제목 클릭');"> 
+        javascript2 테스트(태그 내에 js 적용) </h3> 
+
+
+    <!--javascript [태그 내에서 정의]하는 방식으로 변환하기-->
+    <hr/>
+    css1 가기: 
+        <a href="javascript:location.href='/front/css_1/';">
+            [바로 가기]</a>
+    css2 가기: 
+        <a href="javascript:location.href='/front/css_2/';">
+            [바로 가기]</a>
+    css3 가기: 
+        <a href="javascript:location.href='/front/css_3/';">
+        [바로 가기]</a>
+
+    <hr/>
+    알림창 보여주기:
+        <a href="javascript:alertView();">
+            [알림창 보기]</a>
+
+    <!--버튼으로 보여주기-->
+    <hr/>
+    css1 가기: 
+        <button 
+            onclick="goCss1()">
+            바로가기</button>
+
+    css2 가기:
+        <button 
+            onclick="goCss2()">
+            바로가기</button>
+
+    css3 가기: 
+        <button 
+            onclick="goCss3()">
+            바로가기</button>
+   
+    <!--함수 1개로 처리하기-->
+
+    <hr/>
+    css1 가기: 
+        <button 
+            onclick="goCss('1')">
+            바로가기</button>
+
+    css2 가기:
+        <button 
+            onclick="goCss('2')">
+            바로가기</button>
+
+    css3 가기: 
+        <button 
+            onclick="goCss('3')">
+            바로가기</button>
+    <hr/>
+
+    FrontApp 인덱스: <a href="/front/">[바로 가기]</a>
+
+</body>
+</html>

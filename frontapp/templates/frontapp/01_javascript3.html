@@ -1,0 +1,60 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::javascript3 Page:::</title>
+    <!--외부 방식 자바스크립트
+        -일반적으로 함수로 정의한 후 호출하여 사용
+    -->
+    <script type = "text/javascript"
+        src="{%static '/frontapp/js/front.js' %}">
+    </script>
+</head>
+<body>
+    <h3 onclick = "javascript:alert('제목 클릭');"> 
+        javascript3 테스트(외부방식 태그 내에 js 적용) </h3> 
+
+
+    <!--버튼으로 보여주기-->
+    <hr/>
+    css1 가기: 
+        <button 
+            onclick="goCss1()">
+            바로가기</button>
+
+    css2 가기:
+        <button 
+            onclick="goCss2()">
+            바로가기</button>
+
+    css3 가기: 
+        <button 
+            onclick="goCss3()">
+            바로가기</button>
+   
+    <!--함수 1개로 처리하기-->
+
+    <hr/>
+    css1 가기: 
+        <button 
+            onclick="goCss('1')">
+            바로가기</button>
+
+    css2 가기:
+        <button 
+            onclick="goCss('2')">
+            바로가기</button>
+
+    css3 가기: 
+        <button 
+            onclick="goCss('3')">
+            바로가기</button>
+    <hr/>
+
+    FrontApp 인덱스: <a href="/front/">[바로 가기]</a>
+
+</body>
+</html>
