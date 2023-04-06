@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::01_inputForm:::</title>
+    <script type="text/javascript">
+        // 자바스크립트를 통해 직접 전송하기
+        function goLogin(){
+            // alert("함수 호출 잘 됨");
+            // id 속성의 값이 fm인 태그의 모든 정보 가지고 오기
+            fm = document.getElementById("fm");
+
+            // fm 안에 있는 name 중에 값을 가지고 오기
+            // - form 태그 이름.name 이름.값
+            // alert(fm.no.value);
+            // alert(fm.mem_id.value);
+            // alert(fm.mem_pass.value);
+            
+            // post 방식의 처리는 아래처럼
+            // fm.action = "/front/02_login/";
+            // fm.submit();
+
+            // get 방식의 처리는 아래처럼: url 만들어줘야 함
+            no = fm.no.value;
+            mem_id = fm.mem_id.value;
+            mem_pass = fm.mem_pass.value;
+            
+            url = "/front/02_login/?";
+            url = url + "no=" + no;
+            url = url + "&mem_id=" + mem_id;
+            url = url + "&mem_pass=" + mem_pass;
+
+            // alert(url)
+            location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <h3>inputForm</h3>
+    </hr>
+    <!-- html에서 사용되는 데이터 형태: 딕셔너리 형태
+        - key = value.. name = value 같은 의미
+        - html 페이지에서는 name = value 형태 사용
+        - python 프로그램에서는 key = value 형태로 사용
+    -->
+    <!-- 데이터 입력 받기 
+        - 데이터를 입력 받아서 서버 측으로 전송하기 위해서는 
+        - <form></form> 태그가 정의되어야 함(필수는 아님, 일반적임)
+        - form 태그 내에 입력을 위한 태그들을 정의함
+        - 입력 태그의 속성으로 name과 value가 있음
+        - name과 value의 값이 서버로 전송됨
+        - 전송을 담당하는 태그가 <form> 태그임    
+    -->
+    <!-- 
+        - id: 고유한 값으로 정의됨(특정 태그를 찾기 위해 사용하는 속성)
+        - name: 해당 태그의 이름을 지정
+                (해당 이름으로 태그 정보 접근 가능, id를 통해서도 가능)
+        - method: 서버로 전송하는 방법 지정
+            >>post 방식: name과 value의 값이 브라우저 url 주소에 안 보임
+            >>get 방식: name과 value의 값이 브라우저 url 주소에 보임
+        -action: 전송할 페이지(url 패턴 이름) 주소(href와 동일함)
+     -->
+    <form id="fm" name="fm" method="post" action="/front/02_login/">
+        <!-- 화면에는 보이지 않지만 서버로 특정 값을 전송하고자 할 때 사용 -->
+        <input type="hidden" name="no" value="{{ no }}">
+        <!-- python에서 post 방식으로 전송할 경우에는 
+             form 태그 밑에 항상 csrf_token을 작성해야 함
+             - csrf_token: 파이썬에서 브라우저에게 고유한 token값을 발급함
+                        : 발급한 token값은 서버에서 확인 후
+                            인증이 된 경우에만 서버가 페이지 처리시킴 -->
+        {%csrf_token%}
+        <h5>텍스트 박스</h5>
+        <p>
+            <!-- 컬럼명=변수명=웹에 들어가는 name -->
+            아이디: <input type="text" name="mem_id" value="{{ mem_id }}"> </br>
+            패스워드: <input type="password" name="mem_pass" value="{{ mem_pass }}">
+            <hr/>
+            <!-- 로그인 버튼 -->
+            <!-- type="button": 직접 전송 처리를 해야 함 -->
+            <input type="button" value="로그인(1)" onclick="goLogin()">
+            <!-- type="submit": form 태그에 정의된 처리 방식으로 자동 전송됨 -->
+            <input type="submit" value="로그인(2)">
+            <button type="submit">로그인(3)</button>
+            <button type="button" onclick="goLogin()">로그인(4)</button>
+        </p>
+    </form>
+
+</body>
+</html>

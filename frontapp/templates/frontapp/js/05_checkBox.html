@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::checkbox:::</title>
+    <script type="text/javascript">
+        function checkboxReload(){
+            fm = document.getElementById("fm")
+            for(i=0; i < fm.city.length; i++){
+                if (fm.city[i].checked == true){
+                    fm.city[i].checked = false;
+                }
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <h3>05_checkbox</h3>
+    <hr/>
+<form id="fm" name="fm" method="post" action="/front/">
+    {%csrf_token%}
+    <!-- 체크 박스
+    - 하나의 항목에 대해서 여러 개 체크된 값을 저장
+    - name은 동일하게 처리
+    - value 값은 여러 개 선택하여 지정 가능
+    - 선택된 값 여러 개가 name 이름으로 전송됨 
+    - 현재 보이는 형태 city = ["서울", "광주", "원주", "제주"] -->
+    지역 선택:
+    <br/>
+    <br/>
+    <input type="checkbox" name="city" value="서울">서울
+    <br/>
+    <input type="checkbox" name="city" value="광주">광주
+    <br/>
+    <input type="checkbox" name="city" value="원주">원주
+    <br/>
+    <input type="checkbox" name="city" value="제주">제주
+    <hr>
+    <input type="button" value="체크 박스 초기화 하기" onclick="checkboxReload()">
+</form>
+</body>
+</html>

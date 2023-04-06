@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::03_radioButton:::</title>
+    <script type = "text/javascript">
+        // 전체 페이지 초기화(새로 고침과 동일)
+        function allReload(){
+            location.reload();
+        }
+
+        // 라디오 버튼 태그만 초기화
+        function radioRelord(){
+            fm = document.getElementById("fm");
+            // alert("gogo");
+            // 라디오 버튼의 값들은 여러 개
+            // - for문을 이용해서 체크 여부 확인
+            // - 체크가 되었다면 checked라는 속성이 true의 값을 가짐
+            // - 체크가 안 된 버튼들은 checked라는 속성이 false 값을 가짐
+            // for i in range(0,len(city),1):
+            for(i=0; i < fm.city.length; i++){
+                if (fm.city[i].checked == true){
+                    // alert(fm.city[i].value);
+                    fm.city[i].checked = false;
+
+                }
+            }
+        }
+        // get 방식으로 처리해서 데이터 전송시키기
+        // - 전송 후 화면에 전달된 값이 잘 보이는 지 확인
+        function goRadio(){
+            // 선택된 지역의 값(value)을 alert 창에 출력해주세요.
+            fm = document.getElementById("fm");
+            // alert(fm.city.value);
+            city = fm.city.value;
+
+            url = "/front/04_radio/?";
+            url = url + "city=" + city;
+
+            location.href = url;
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <h3>03_radioButton</h3>
+    <hr/>
+<form id="fm" name="fm" method="post" action="/front/04_radio/">
+    {%csrf_token%}
+    <!-- 라디오 버튼
+    - 하나의 항목에 대해서 여러 개의 버튼의 name은 동일하게 처리
+    - value 값은 지정되어 있어야 함
+    - 선택된 값 한 개가 name 이름으로 전송됨 
+    - city = ["서울", "광주", "원주", "제주"] -->
+    지역 선택:
+    <br/>
+    <br/>
+    <input type="radio" name="city" value="서울">서울
+    <br/>
+    <input type="radio" name="city" value="광주">광주
+    <br/>
+    <input type="radio" name="city" value="원주">원주
+    <br/>
+    <input type="radio" name="city" value="제주">제주
+    <hr>
+    <input type="submit" value="저장하기(1)">
+    <input type="button" value="저장하기(2)" onclick="goRadio()">
+    <input type="button" value="라디오 버튼만 초기화 하기"
+        onclick="radioRelord()">
+    <input type="button" value="전체 초기화"
+        onclick="allReload()">
+</form>
+</body>
+</html>

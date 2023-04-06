@@ -1,4 +1,3 @@
-
 from django.urls import path
 
 ###  from 뒤에 작성 규칙
@@ -64,6 +63,27 @@ urlpatterns = [
 
     ### http://127.0.0.1.8000/front/01_cssTable/
     path('01_cssTable/', views.cssTableView),
+
+    ### http://127.0.0.1.8000/front/02_cssTable/
+    path('02_cssTable/', views.cssTableView2),
+
+    ### http://127.0.0.1.8000/front/03_cssNav/
+    path('03_cssNav/', views.cssnavView),
+
+    ### http://127.0.0.1.8000/front/01_jsInputForm/
+    path('01_jsInputForm/', views.jsInputFormView),
+
+    ### http://127.0.0.1.8000/front/02_login/
+    path('02_login/', views.jsLogin),
+
+    ### http://127.0.0.1.8000/front/03_radioButton/
+    path('03_radioButton/', views.radioButtonView),
+
+    ### http://127.0.0.1.8000/front/04_radio/
+    path('04_radio/', views.jsRadio),
+
+    ### http://127.0.0.1.8000/front/05_checkBox/
+    path('05_checkBox/', views.checkBoxView),
 
 
 ]
