@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::ja : 08_required:::</title>
+
+</head>
+<body>
+    <h3>08_required</h3>
+    <hr/>
+<form id="fm" name="fm" method="post" action="#">
+    {% csrf_token %}
+    아 이 디: <input type="text" name = "mem_id" 
+        placeholder = "아이디 입력" required>
+    <br/>
+    비밀 번호: <input type="password" name="mem_pass" 
+        placeholder = "패스워드 입력" required>
+    <hr/>
+    <input type="submit" value="submit 로그인">
+</form>
+</body>
+</html>

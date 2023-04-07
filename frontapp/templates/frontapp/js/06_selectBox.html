@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::06_selectBox:::</title>
+    <script type="text/javascript">
+        function oneSelect(){
+            // select 한 개 선택 조회
+            fm = document.getElementById("fm");
+            alert(fm.city_one.value);
+        }
+        function multiSelect(){
+            // select 여러 개 선택 조회
+            fm = document.getElementById("fm");
+            sel_all = "";
+            for(i=0; i<fm.city_multi.options.length; i++){
+                // 선택 여부 확인하기
+                if(fm.city_multi.options[i].selected == true){
+                    sel_all += fm.city_multi.options[i].value + ","
+                }
+            }
+            sel_all = sel_all.slice(0,-1);
+            alert(sel_all);
+        }
+        function multiclear(){
+            fm = document.getElementById("fm");
+            for(i=0; i<fm.city_multi.options.length; i++){
+                // 선택 여부 확인하기
+                if(fm.city_multi.options[i].selected == true){
+                    fm.city_multi.options[i].selected = false;
+                }
+            }
+        }
+        // 기존 저장된 데이터가 있다고 가정할 때,
+        // 저장 데이터와 같은 값으로 selected 하기
+        function initOne(area){
+            fm = document.getElementById("fm");
+            for(i=0; i<fm.city_one.options.length; i++){
+                // 저장 데이터와 같은 option 선택하기
+                if (fm.city_one.options[i].value == area){
+                    fm.city_one.options[i].selected = true;
+                }
+            }
+        }
+        // 기존 저장된 데이터가 있다고 가정할 때,
+        // 저장 데이터와 같은 값으로 multiselected 하기
+
+        function initMulti(areas){
+            
+            areas_list = areas.split(',');
+            fm = document.getElementById("fm");
+
+            for(i=0; i<fm.city_multi.options.length; i++){
+                for(j=0; j<areas_list.length; j++){
+                    // 저장 데이터와 같은 option 선택하기
+                    if (fm.city_multi.options[i].value == areas_list[j]){
+                        fm.city_multi.options[i].selected = true;
+                        break;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<!-- 최초에 페이지가 열릴 때 .. 자바스크립트 함수를 호출하여 
+값들을 checked 또는 selected 하려면 어떻게?
+-> body 태그 내에 onload(자바스크립트 함수(), 여러 개..) 함수를 사용하면,
+    페이지가 열릴 때, 자바스크립트 함수를 호출하여 처리 가능 -->
+<!-- onload에 initMulti() 함수 넣기 -> 함수 생성 -> 처리하기 -->
+<body onload="initOne('{{area}}'); initMulti('{{areas}}');">
+    <h3>06_selectBox</h3>
+    <hr/>
+<form id="fm" name="fm" method="post" action="/front/">
+    {%csrf_token%}
+    <!-- [select box] : selected로 선택 여부(true or false)를 확인 가능
+    - option 데이터들은 options 속성에 리스트(배열) 형태로 저장되어있음 -->
+    지역 택 1:
+    <select name="city_one">
+        <option value="서울">서울</option>
+        <option value="광주">광주</option>
+        <option value="원주">원주</option>
+        <option value="강릉">강릉</option>
+    </select>
+    <!-- 선택된 한 건의 값 alert()로 보여주기 -->
+    <!-- 버튼 만들기 => oneSelect()함수 호출 => 선택된 값 보여주기 -->
+    <input type="button" value="한 개 선택" 
+        onclick="oneSelect()">
+    <hr/>
+
+    <!-- 다중 선택하기 -->
+    지역 다중 선택 : <br/>
+    <select name="city_multi" 
+        style="width: 80px; height: 65px;" multiple>
+        <option value="서울">서울</option>
+        <option value="광주">광주</option>
+        <option value="원주">원주</option>
+        <option value="강릉">강릉</option>
+    </select>
+    <!-- 선택된 여러 건의 값 alert()로 보여주기 -->
+    <!-- 버튼 만들기 => oneSelect()함수 호출 => 선택된 값 보여주기 -->
+    <input type="button" value="다중 선택" 
+        onclick="multiSelect()">
+    <!-- 멀티 선택에 대해서만 초기화하기 -->
+    <!-- 버튼 생성 => multiclear() 함수 생성 => 처리하기 -->
+    <button onclick="multiclear()">다중 선택 초기화</button>
+    </html>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>:::checkbox:::</title>
     <script type="text/javascript">
+        // 라디오 버튼 태그 초기화
         function checkboxReload(){
             fm = document.getElementById("fm")
             for(i=0; i < fm.city.length; i++){
@@ -13,15 +14,65 @@
                     fm.city[i].checked = false;
                 }
             }
-
         }
+        function goSelect(){
+            fm = document.getElementById("fm")
+            str_all = "";
+            for(i=0; i < fm.city.length; i++){
+                if (fm.city[i].checked == true){
+                    str_all += fm.city[i].value + ",";
+                }
+            }
+            // slice(시작 값, 끝 값): 문자열 자르기 함수/ 끝 값의 -1은 마지막 바로 앞의 값
+            str_all = str_all.slice(0, -1);
+            alert(str_all);
+        }
+        // 페이지 로딩 시 사용자 데이터를 이용해서 체크박스 세팅하기
+        function initcheck(area){
+            fm = document.getElementById("fm");
+            for(i=0; i < fm.city.length; i++){
+                if (fm.city[i].value == area){
+                    fm.city[i].checked = true;
+                }
+            }
+        }
+        // split 테스트 함수
+        function getSplit(){
+            msg = "서울,광주";
+            split_msg = msg.split(',');
+            for(i=0; i<split_msg.length; i++){
+                alert(split_msg[i])
+            }
+            // alert(msg.split(','));
+        }
+        function initMulticheck(areas){
+            // ['서울', '원주']
+            areas_list = areas.split(',');
 
+            fm = document.getElementById("fm");
+            for(i=0; i < fm.city.length; i++){
+                for(j=0; j < areas_list.length; j++){
+                    if(fm.city[i].value == areas_list[j]){
+                        fm.city[i].checked = true;
+                        break;
+                    }
+                }
+            }
+        }
     </script>
 </head>
-<body>
+<!-- 페이지가 로딩 시 멀티 체크된 항목들 세팅하기
+    - 자바스크립트 함수 이름: initMulticheck()
+    - 값은 광주, 부산
+    - 값은 view.py에서 넣어주기
+    initcheck('{{area}}'); 
+ -->
+
+<body onload="initMulticheck('{{areas}}');">
+
     <h3>05_checkbox</h3>
     <hr/>
-<form id="fm" name="fm" method="post" action="/front/">
+<form id="fm" name="fm" method="post" action="#">
     {%csrf_token%}
     <!-- 체크 박스
     - 하나의 항목에 대해서 여러 개 체크된 값을 저장
@@ -41,6 +92,19 @@
     <input type="checkbox" name="city" value="제주">제주
     <hr>
     <input type="button" value="체크 박스 초기화 하기" onclick="checkboxReload()">
+
+    <!--검색(체크된 value의 값들을 '서울','광주' 형태로 정의) -->
+    <!-- 함수 이름 goSelect() -->
+    <!-- 체크된 값들을 변수에 담아서 alert()으로 보여주기 -->
+    <!-- 2개가 선택되었다면 => '서울', '광주' 형태로, 띄어쓰기 없음, 마지막 콤마 없음 -->
+    <button onclick="goSelect()">검색하기</button>
+
+    <!-- split 테스트 -->
+    <button onclick="getSplit()">split 테스트</button>
 </form>
 </body>
 </html>
+
+
+    <!-- type="button": 직접 전송 처리를 해야 함 -->
+    <!-- type="submit": form 태그에 정의된 처리 방식으로 자동 전송됨 -->

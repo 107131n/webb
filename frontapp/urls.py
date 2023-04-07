@@ -85,5 +85,20 @@ urlpatterns = [
     ### http://127.0.0.1.8000/front/05_checkBox/
     path('05_checkBox/', views.checkBoxView),
 
+    ### http://127.0.0.1.8000/front/06_selectBox/
+    path('06_selectBox/', views.selectBoxView),
+
+    ### http://127.0.0.1.8000/front/07_required/
+    path('07_required/', views.requiredView),
+
+    ### http://127.0.0.1.8000/front/08_required/
+    path('08_required/', views.requiredView2),
+
+    ### http://127.0.0.1.8000/front/01_jquery/
+    path('01_jquery/', views.jqueryView1),
+
+    ### http://127.0.0.1.8000/front/02_slidejquery/
+    path('02_slidejquery/', views.slideJqueryView2),
+
 
 ]

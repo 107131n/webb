@@ -1,0 +1,53 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_02_slidejqueryjquery</title>
+    <!-- 파일 다운하고 사용하는 방법 -->
+    <script type="text/javascript"
+        src = "{% static 'frontapp/js/jquery-3.6.4.min.js' %}">
+    </script>
+    <!-- Google CDN URL을 링크해서 사용하는 방식/ 파일 다운 없이 사용하는 방법(근데 인터넷이 되어야 하고 서비스 종료할 수도..) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </script> 
+    <script type="text/javascript">
+        // jquery 기본 틀 만들기
+        $(document).ready(function(){
+            // 슬라이드 토글 사용하기
+            // id=div1이 클릭이 되면..
+            $("#div1").click(function(){
+                // div1_contents 영역을 보였다가/ 숨겼다가 처리하기
+                $("#div1_contents").slideToggle("fast");
+            });
+        });
+    </script>
+    <style>
+        #div1, #div1_contents{
+            padding: 5px;
+            text-align: center;
+            background-color: lightgoldenrodyellow;
+            border: 1px solid skyblue
+        }
+        #div_contents{
+            padding: 50px;
+            /*최초에 보이지 않기 설정*/
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>02_slidejquery</h3>
+    <hr/>
+    <div id="div1">
+    이 곳을 클릭하면 아래에 내용이 보여집니다.
+    </div>
+    <div id="div1_contents">
+        silde toggle<br/>
+        슬라이드 토글은 내용을 담아 놓고, <br/>
+        보였다가/ 안 보였다가를 반복해서 할 수 있는 기능
+    </div>    
+</body>
+</html>

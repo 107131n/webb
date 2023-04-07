@@ -153,7 +153,8 @@ def jsLogin(request):
     p_pw = "asdf"
 
     """
-        - 아래 if (p_id == mem_id) and (p_pw == mem_pass): 이 조건을 SQL구문으로 만들어주시죠.
+        - 아래 if (p_id == mem_id) and (p_pw == mem_pass): 
+          이 조건을 SQL구문으로 만들어주시죠.
           테이블(testTB), 컬럼은 p_id, p_pw, p_no
         Select no, p_id as id, p_pw as pw
         From testTB 
@@ -180,7 +181,7 @@ def jsLogin(request):
     ### 전송 받은 mem_id와 p_id가 같고, 
     #   mem_pass와 p_pw가 같다면 아래처럼 전달 받은 값 모두 응답 처리
     # - 아이디 또는 패스워드 중에 하나라도 같지 않다면
-    #   응답 메세지(rs-msg)로 "아이디 또는 패스워드가 같지 않습니다."를
+    #   응답 메세지(rs_msg)로 "아이디 또는 패스워드가 같지 않습니다."를
     #   응답해주려고 합니다.
     # if (p_id == mem_id) and (p_pw == mem_pass):
     #     # 3. DB 처리 결과를 응답하기(html 파일 또는 메시지 이용)        
@@ -280,9 +281,43 @@ def jsRadio(request):
     
     return HttpResponse(rs_msg)
 
-
+###################checkbox######################
 def checkBoxView(request):
+    area = "광주"
+    # areas = "원주,서울"
     return render(request,
                   "frontapp/js/05_checkBox.html",
+                  {#"area":area,
+                   "areas":areas})
+
+    
+def selectBoxView(request):
+    ### 한 지역 이름을 이용해서 selected에 사용하기
+    # DB에서 조회했다고 가정..
+    # area = "광주"
+    areas = "원주,서울"
+    return render(request,
+                  "frontapp/js/06_selectBox.html",
+                  {#"area":area,
+                   "areas":areas})
+
+def requiredView(request):
+    return render(request,
+                  "frontapp/js/07_input_required.html",
+                  {})
+
+def requiredView2(request):
+    return render(request,
+                  "frontapp/js/08_input_required.html",
+                  {})
+
+def jqueryView1(request):
+    return render(request,
+                  "frontapp/jquery/01_jquery.html",
+                  {})
+
+def slideJqueryView2(request):
+    return render(request,
+                  "frontapp/jquery/02_slidejquery.html",
                   {})
     

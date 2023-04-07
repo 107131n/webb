@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::ja : 07_required:::</title>
+    <script type="text/javascript">
+        function buttonLogin(){
+            fm = document.getElementById("fm");
+            // -- : ""
+            // alert("-"+fm.mem_id.value+"-");
+            // 아이디 체크하기
+            if(fm.mem_id.value == ""){
+                alert("아이디를 입력해주세요.");
+                fm.mem_id.focus();
+                return;
+            }
+            // 비밀번호 체크하기
+            if(fm.mem_pass.value==""){
+                alert("비밀번호를 입력해주세요.");
+                fm.mem_pass.focus();
+                return;
+            }
+            id = fm.mem_id.value;
+            pw = fm.mem_pass.value;
+            alert("id: "+id+ "/ pw: "+pw);
+        }
+    </script>
+</head>
+<body>
+    <h3>07_required</h3>
+    <hr/>
+<!-- 
+    - form: 아이디 fm, 이름 fm, 전송방식 post, 페이지 #으로
+    - input: 아이디(text, mem_id), 패스워드(password, mem_pass)
+    - 버튼: type submit, value "로그인"
+ -->
+ <!-- 
+    *****[데이터로 전송되는 값들의 타입]*****
+    - 모두 문자열임
+    1. buttonLogin() 함수 생성
+        - 아이디가 입력이 안 된 경우
+            > "아이디를 입력해주세요." 창 띄우기
+        - 패스워드가 입력이 안 된 경우
+            > "패스워드를 입력해주세요." 창 띄우기
+        - 모두 입력된 경우에는
+            > "아이디: XXX / 패스워드: XXXX" 창 띄우기
+  -->
+<form id="fm" name="fm" method="post" action="#">
+    {% csrf_token %}
+    아 이 디: <input type="text" name = "mem_id">
+    <br/>
+    비밀 번호: <input type="password" name="mem_pass">
+    <hr/>
+    <input type="submit" value="submit 로그인">
+    <input type="button" value="button 로그인" onclick="buttonLogin()">
+</form>
+</body>
+</html>
