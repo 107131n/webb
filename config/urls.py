@@ -37,8 +37,8 @@ from mainapp import views
 urlpatterns = [
     ### http://127.0.0.1:8000/
     path('', views.index),
-      ### http://127.0.0.1:8000/index
-
+    
+    ### http://127.0.0.1:8000/index
     path('index/', views.index), 
       
     # path('testpage/', v1.testPage),
@@ -56,6 +56,9 @@ urlpatterns = [
 
     ### http://127.0.0.1:8000/front/
     path('front/', include('frontapp.urls')),
+
+    ### http://127.0.0.1:8000/oracle/
+    path('oracle/', include('oracleapp.urls')),
           
     # path('admin/', admin.site.urls),
 ]

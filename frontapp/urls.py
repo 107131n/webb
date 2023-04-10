@@ -100,5 +100,14 @@ urlpatterns = [
     ### http://127.0.0.1.8000/front/02_slidejquery/
     path('02_slidejquery/', views.slideJqueryView2),
 
+    ### http://127.0.0.1.8000/front/bootstrap01/
+    path('bootstrap01/', views.bootstrap01),
+
+    ### http://127.0.0.1.8000/front/bootstrap_table/
+    path('bootstrap_table/', views.bootstrap_table),
+
+    ### http://127.0.0.1.8000/front/bootstrap_form/
+    path('bootstrap_form/', views.bootstrap_form),
+
 
 ]

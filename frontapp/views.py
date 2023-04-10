@@ -320,4 +320,19 @@ def slideJqueryView2(request):
     return render(request,
                   "frontapp/jquery/02_slidejquery.html",
                   {})
+
+def bootstrap01(request):
+    return render(request,
+                  "frontapp/bootstrap/01_bootstrap.html",
+                  {})
+
+def bootstrap_table(request):
+    return render(request,
+                  "frontapp/bootstrap/02_bootstrap_table.html",
+                  {})
+
+def bootstrap_form(request):
+    return render(request,
+                  "frontapp/bootstrap/03_bootstrap_form.html",
+                  {})
     
