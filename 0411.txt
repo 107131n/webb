@@ -1,0 +1,59 @@
+0411
+
+- secondapp에서 
+- member 테이블 모델에 생성
+- views 함수명: getMemberAll()
+- /member/mem_all.html 생성
+- url 패턴: mem_all
+
+-----------------------------oracleapp에서-------------------------------
+
+* 회원 목록에서
+- 이름을 클릭하면
+  -- 자바스크립트 goView() 함수 호출되게
+  -- alert()를 이용해서 "함수 호출" 메시지 나오게 처리
+
+
+- mem_view.html 페이지로 이동
+- getMemberView() 함수 사용
+- 클릭했을 때, 회원 정보를 getMemberView() 함수에 넘겨야 함
+- 패턴: mem_view
+
+
+------------------------------------------------------------------
+
+- [목록 가기] [수정하기] [삭제하기] 버튼 생성하기
+- goList(), goUpdateForm(), goDelete()
+
+
+------------------------------------------------------------------
+
+* 회원 정보 수정하기 폼 페이지
+
+- view 함수명: getMemUpdateForm()
+- /member/mem_update_form.html 생성
+- url 패턴: mem_update_form
+
+
+
+* 회원 정보 수정하기 
+
+- view 함수명: getMemUpdate()
+- html 없음, HttpResponse('수정하기') 확인만
+- url 패턴: mem_update
+
+
+
+
+
+
+파라미터 모델 탬플레이트 순으로
+
+
+
+
+
+
+
+
+

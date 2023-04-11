@@ -16,4 +16,14 @@ urlpatterns = [
 ###################[ 회원 관리 ]####################
     ### http://127.0.0.1:8000/oracle/mem_list/
     path('mem_list/', views.getMemberList),
+
+    ### http://127.0.0.1:8000/oracle/mem_view/
+    path('mem_view/', views.getMemberView),
+
+    ### http://127.0.0.1:8000/oracle/mem_update_form/
+    path('mem_update_form/', views.getMemUpdateForm),
+
+    ### http://127.0.0.1:8000/oracle/mem_update/
+    path('mem_update/', views.getMemUpdate),
+
 ]

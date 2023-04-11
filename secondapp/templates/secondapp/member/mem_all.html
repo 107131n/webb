@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::mem_all:::</title>
+</head>
+<body>
+    <h3>mem_all</h3>
+    <hr/>
+    <table border = "1">
+    <tr>
+        <th>아이디</th>
+        <th>비밀번호</th>
+        <th>이름</th>
+        <th>주소1</th>
+    </tr>
+    {%for mem in mem_all%}
+        <tr>
+            <td>{{ mem.mem_id}}</td>
+            <td>{{ mem.mem_pass}}</td>
+            <td>{{ mem.mem_name}}</td>
+            <td>{{ mem.mem_add1}}</td>
+        </tr>
+    {%endfor%}
+    </table>
+</body>
+</html>

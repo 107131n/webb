@@ -9,4 +9,7 @@ urlpatterns = [
     path('', views.index),
     path('index/', views.index),
     ### http://127.0.0.1.8000/second/css_test
+
+    ### http://127.0.0.1:8000/second/mem_all/
+    path('mem_all/', views.getMemberAll),
 ]
