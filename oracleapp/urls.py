@@ -26,4 +26,19 @@ urlpatterns = [
     ### http://127.0.0.1:8000/oracle/mem_update/
     path('mem_update/', views.getMemUpdate),
 
+    ### http://127.0.0.1:8000/oracle/cart_list/
+    path('cart_list/', views.getCartList),
+
+    ### http://127.0.0.1:8000/oracle/cart_view/
+    path('cart_view/', views.getCartView),
+
+    ### http://127.0.0.1:8000/oracle/cart_update_form/
+    path('cart_update_form/', views.getCartUpdateForm),
+
+    ### http://127.0.0.1:8000/oracle/cart_update/
+    path('cart_update/', views.getCartUpdate),
+
+    ### http://127.0.0.1:8000/oracle/cart_delete/
+    path('cart_delete/', views.getCartDelete),
+
 ]

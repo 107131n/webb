@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::주문(장바구니) 전체 목록:::</title>
+    <script>
+        // 상세 보기 처리하기
+        function goView(cart_no, cart_prod){
+            // alert(cart_no);
+            // alert(cart_prod);
+            url = "/oracle/cart_view/?";
+            url = url + "cart_no=" + cart_no;
+            url = url + "&cart_prod=" + cart_prod;
+            // alert(url);
+            location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <h2>주문(장바구니) 전체 목록</h2>
+    <hr/>
+    <!-- 등록하기 버튼 생성하기 -->
+    <button onclick="goCreate()">등록</button>
+    <hr/>
+
+    <!-- 행렬의 2차원 데이터를 표현할 수 있는 태그: table
+        tr: 행
+        td or th: 열
+    -->
+    <table border="1">
+        <!-- 첫번째 tr 영역에는 컬럼명이 들어감 -->
+        <tr>
+            <th>주문 번호</th>
+            <th>회원 아이디</th>
+            <!-- <th>상품 코드</th>
+            <th>주문 수량</th> -->
+        </tr>
+        <!-- 두번째 tr 영역부터는 각 컬럼에 맞는 데이터 넣기 -->
+        {% for d in cart_list %}
+        <tr>
+            <td><a href="javascript:goView('{{d.cart_no}}','{{d.cart_prod}}');">
+                {{d.cart_no}}</a></td>
+            <td>{{d.cart_member}}</td>
+            {% comment %} <td>{{d.cart_prod}}</td>
+            <td>{{d.cart_qty}}</td> {% endcomment %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

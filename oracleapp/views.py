@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Member
+from .models import Member, Cart
 # Create your views here.
 
 ### oracleapp의 index 페이지
@@ -87,4 +87,139 @@ def getMemUpdate(request):
                 location.href = '/oracle/mem_view/?mem_id={}';
             </script>
     """.format(mem_id)
+    return HttpResponse(msg)
+
+def getCartList(request):
+    ### 1. 전달 받을 파라메터 있으면 받기(get or post)
+    ### 2. Model에서 CRUD 처리할 것이 있으면 처리(models.py)
+    ### 3. Templates: html 생성
+    ### 4. Model을 html 넘기기: return render()
+
+    # 1번 처리: 없음
+    # 2번 처리: 전체 조회
+    """
+        Select *
+        From cart;
+    """
+    cart_list = Cart.objects.all()
+    """
+        <cart_list의 결과값의 모양(타입)>
+        [{'cart_member':'a001','cart_no':'201901010100001',
+        'cart_prod':'p10100001','cart_qty':'23'},
+        {'cart_member':'a001','cart_no':'201901010100001',
+        'cart_prod':'p10100001','cart_qty':'23'},
+        {'cart_member':'a001','cart_no':'201901010100001',
+        'cart_prod':'p10100001','cart_qty':'23'}]
+    """
+    # 3번 처리: cart_list.html 생성
+    # 4번 처리:
+    return render(request,
+                  "oracleapp/cart/cart_list.html",
+                  {"cart_list":cart_list})
+
+### 주문(장바구니) 상세 정보 조회 (한 건 조회)
+def getCartView(request):
+    ### 1. 전달 받을 파라메터 있으면 받기(get or post)
+    ### 2. Model에서 CRUD 처리할 것이 있으면 처리(models.py)
+    ### 3. Templates: html 생성
+    ### 4. Model을 html 넘기기: return render()
+
+    # 1번 처리
+    cart_no = request.GET.get("cart_no", "ERROR")
+    cart_prod = request.GET.get("cart_prod","ERROR")
+
+    # 2번 처리 : 2개의 PK값을 이용해서 데이터 조회 (한 건 조회)
+    cart_view = Cart.objects.get(cart_no = cart_no,
+                                 cart_prod = cart_prod)
+    """
+        Select *
+        From cart
+        Where cart_no = cart_no값
+        And cart_prod = cart_prod값;
+    """
+    # 3번 처리: cart_view.html 생성
+    # 4번 처리
+    return render(request,
+                  "oracleapp/cart/cart_view.html",
+                  {"cart_no":cart_no,
+                  "cart_prod":cart_prod,
+                  "cart_view":cart_view})
+
+### 주문(장바구니) 수정 폼 페이지
+def getCartUpdateForm(request):
+    ### 1. 전달 받을 파라메터 있으면 받기(get or post)
+    ### 2. Model에서 CRUD 처리할 것이 있으면 처리(models.py)
+    ### 3. Templates: html 생성
+    ### 4. Model을 html 넘기기: return render()
+
+    # 1번 처리
+    cart_no = request.GET.get("cart_no", "ERROR")
+    cart_prod = request.GET.get("cart_prod","ERROR")
+    # 2번 처리
+    cart_view = Cart.objects.get(cart_no=cart_no,
+                                 cart_prod=cart_prod)
+    # 3번 처리: cart_update_form.html 생성
+    # 4번 처리
+    return render(request,
+                  "oracleapp/cart/cart_update_form.html",
+                  {"cart_no":cart_no,
+                   "cart_prod":cart_prod,
+                   "cart_view":cart_view})
+
+### 주문(장바구니) 수정 처리하기
+def getCartUpdate(request):
+    ### 1. 전달 받을 파라메터 있으면 받기(get or post)
+    ### 2. Model에서 CRUD 처리할 것이 있으면 처리(models.py)
+    ### 3. Templates: html 생성
+    ### 4. Model을 html 넘기기: return render()
+
+    # 1번
+    cart_no = request.POST.get("cart_no", "ERROR")
+    cart_prod = request.POST.get("cart_prod", "ERROR")
+    cart_qty = request.POST.get("cart_qty", "ERROR")
+
+    # msg = "cart_no={}/ cart_prod={}/ cart_qty={}".format(cart_no,
+    #                                                      cart_prod,
+    #                                                      cart_qty)
+
+    # 2번 처리
+    Cart.objects.filter(cart_no=cart_no,
+                        cart_prod=cart_prod).update(cart_qty=cart_qty)
+
+    # 3번: html 생성 안 함
+    # 4번 처리
+    msg = """
+        <script type = 'text/javascript'>
+            alert('정상적으로 수정 완료');
+            location.href = '/oracle/cart_view/?cart_no={}&cart_prod={}';
+        </script>
+    """.format(cart_no, cart_prod)
+    return HttpResponse(msg)
+
+### 주문(장바구니) 정보 삭제하기
+def getCartDelete(request):
+    ### 1. 전달 받을 파라메터 있으면 받기(get or post)
+    ### 2. Model에서 CRUD 처리할 것이 있으면 처리(models.py)
+    ### 3. Templates: html 생성
+    ### 4. Model을 html 넘기기: return render()
+
+    # 1번
+    cart_no = request.GET.get("cart_no", "ERROR")
+    cart_prod = request.GET.get("cart_prod", "ERROR")
+    
+    # msg = "cart_no={}/ cart_prod={}".format(cart_no,
+    #                                         cart_prod)
+
+    # 2번 처리
+    Cart.objects.filter(cart_no=cart_no,
+                        cart_prod=cart_prod).delete()
+
+    # 3번: html 생성 안 함
+    # 4번 처리
+    msg = """
+    <script type = 'text/javascript'>
+        alert('정상적으로 삭제 완료');
+        location.href = '/oracle/cart_list/';
+    </script>
+    """
     return HttpResponse(msg)
