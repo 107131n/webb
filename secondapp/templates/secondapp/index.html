@@ -9,16 +9,19 @@
 <body>
     <h3>Index Html Second Page 입니다.</h3> 
     <hr/>
-    <p>
+    {% comment %} <p>
         HTML 코드 잘 실행됩니다.
     </p>
     <hr/>
     <p>데이터를 넣을 때 : {{ key }}</p>
-    <p>데이터를 넣을 때 : {{ key2 }}</p>
+    <p>데이터를 넣을 때 : {{ key2 }}</p> {% endcomment %}
     
+    Mainapp: <a href="/">[인덱스 페이지로 가기]</a>
     <hr/>
 
-    Mainapp: <a href="/">[인덱스 페이지로 가기]</a>
+    <h2>주문(장바구니) 관리</h2>
 
+    <hr/>
+    * 주문(장바구니) 전체 조회: <a href="/second/cart_list/">[바로 가기]</a>
 </body>
 </html>

@@ -2,21 +2,18 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 
-from .models import Member
+from .models import Cart
 # from .model import Member
-def second(request):
-    return HttpResponse("second 호출...")
 
 def index(request):
     return render(request,
-                  'secondapp/index.html')
+                  'secondapp/index.html',
+                  {})
 
-def cssTestView(request):
+def getCartList(request):
+    cart_list = Cart.objects.all()
     return render(request,
-                  'secondapp/css_test.html')
+                  'secondapp/cart/cart_list.html',
+                  {"cart_list":cart_list})
 
-def getMemberAll(request):
-    mem_all = Member.objects.all()
-    return render(request,
-                  'secondapp/member/mem_all.html',
-                  {"mem_all": mem_all})
+

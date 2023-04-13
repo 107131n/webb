@@ -26,6 +26,8 @@ urlpatterns = [
     ### http://127.0.0.1:8000/oracle/mem_update/
     path('mem_update/', views.getMemUpdate),
 
+###################[ 주문 관리 ]####################
+
     ### http://127.0.0.1:8000/oracle/cart_list/
     path('cart_list/', views.getCartList),
 
@@ -40,5 +42,21 @@ urlpatterns = [
 
     ### http://127.0.0.1:8000/oracle/cart_delete/
     path('cart_delete/', views.getCartDelete),
+
+    ### http://127.0.0.1:8000/oracle/cart_insert_form/
+    path('cart_insert_form/', views.getCartInsertForm),
+
+    ### http://127.0.0.1:8000/oracle/cart_insert/
+    path('cart_insert/', views.getCartInsert),
+
+################## member와 cart join #######################
+    ### http://127.0.0.1:8000/oracle/mem_cart_list/
+    path('mem_cart_list/', views.getMemCartList),
+
+    ### http://127.0.0.1:8000/oracle/mem_cart_view/
+    path('mem_cart_view/', views.getMemCartView),
+
+    ### http://127.0.0.1:8000/oracle/memview/
+    path('memview/', views.getMemView),
 
 ]

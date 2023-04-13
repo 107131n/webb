@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::주문(장바구니) 입력 폼 화면:::</title>
+    <script type="text/javascript">
+        // 취소 버튼 처리
+        function goBack(){
+            history.go(-1)
+        }
+    </script>
+</head>
+<body>
+
+    <h2>주문(장바구니) 입력 폼 화면</h2>
+    <hr/>
+<!-- submit으로 전송 시 필수 항목일 경우 required 꼭 써야 함 -->
+<form id="fm" name="fm" method="POST" action="/oracle/cart_insert/">
+    {% csrf_token %}
+    <p>* 아이디: 
+        <input type="text" name = "cart_member" value="a001" required>
+    </p>
+    <p>* 상품 코드:
+        <input type="text" name = "cart_prod" value="P302000003" required>
+    </p>
+    <p>* 주문 수량:
+        <input type="text" name = "cart_qty" size="5" value="13" required>
+    </p>
+    <p>* 주문 번호:
+        <input type="text" name = "cart_no" value="2005040100001" required>
+    </p>
+    <hr/>
+
+
+    <!-- 저장 버튼 -->
+    <input type="submit" value="저장">
+    <!-- 취소 버튼 -->
+    <input type="button" value="취소" onclick="goBack()">
+
+
+</form>
+</body>
+</html>

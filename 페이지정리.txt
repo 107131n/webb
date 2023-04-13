@@ -1,0 +1,161 @@
+--------- 정리 --------
+[단일 페이지 작성 순서]
+ - 예시 : 회사소개, 연혁, 조직도 등 html 페이지 하나만 만들어지는 페이지
+ - 순서(DB처리 없는경우) : views.py 함수 생성 > templates/html 생성 > urls.py 패턴정의
+ - 순서(DB처리가 있는 경우) : views.py 함수생성 > models.py 데이터(CRUD) > templates/html 생성 > urls.py 패턴정의
+ - 순서(DB+파라메터가 있는 경우) :  : views.py 함수생성 > 파라메터 받기(POST or GET) > 
+                                                  models.py 데이터(CRUD) > templates/html 생성 > urls.py 패턴정의
+
+[연속 페이지 작성 순서]
+ - 예시 : 게시물, 회원관리, 상품조회 등등 (페이지가 계속 이벤트(버튼)을 통해 연결되는 페이지들)
+ - 순서(파라메터가 있는 경우 최초(목록) 페이지) :  views.py 함수생성 > 파라메터 받기(POST or GET) > 
+                                                  	              models.py 데이터(CRUD) > templates/html 생성 > urls.py 패턴정의
+                                                                : html페이지에서 > 다음페이지로 연결할 url패턴을 정의(클릭 이벤트)
+                                                                  (보통 버튼 처리가 추가되면서 다음페이지 url패턴 명시)
+
+ - 순서(파라메터가 있는 경우 최초 이후 페이지) : views.py 함수생성 > 파라메터 받기(POST or GET) > 
+                                                  	              models.py 데이터(CRUD) > templates/html 생성 > urls.py 패턴정의
+                                                                : html페이지에서 > 다음페이지로 연결할 url패턴을 정의(클릭 이벤트)
+                                                                  (보통 버튼 처리가 추가되면서 다음페이지 url패턴 명시)
+ 
+ - 순서(html 페이지를 만들지 않아도 되는 경우) : views.py 함수생성 > 파라메터 받기(POST or GET) > 
+                                                  	              models.py 데이터(CRUD) > 
+					views.py함수 내에서 자바스크립트 문자열로 생성(기존 URL패턴 사용) >
+                                                                  HttpResponse()를 통해 처리
+
+------------- 이벤트 처리 방법 ----------
+[클릭 이벤트]
+ - <input type="button" value="보여지는값" onclick="자바스크립트 함수명()">
+ - <input type="submit" value="보여지는값">
+ - <button  onclick="자바스크립트 함수명()">보여지는값<button>
+ - <a href="javascript:자바스크립트 함수명();">보여지는값</a>
+ - <a href="url패턴">보여지는값</a>
+
+[데이터 전송(파라메터 전송) method => POST or GET]
+ <POST 방식>
+  - <form id="사용할 아이디이름" method="POST" action="url 패턴"> 태그 안에서 아래 작성 
+       <input type="hidden or text" name="전송할 이름(key값)" value="입력한 값">
+       <select name="전송할 이름(key값)"><option value=""></option></select>
+       <textarea name="전송할 이름(key값)">value값</textarea>
+       <input type="checkbox or radio" name="전송할 이름(key값)"  value="입력한 값">
+
+  - 사용하는 클릭이벤트 : <input type="submit" value="보여지는값">
+
+
+ <GET 방식>
+  1. 입력 또는 수정 값이 없는 경우(삭제 또는 페이지만 전환하는 경우)
+     (자바스클립트 함수에서 사용시)
+        - location.href = "url패턴?name=value&name2=value2&.....";
+     (a 태그 이용시)
+        - <a href="url패턴?name=value&name2=value2">보여지는값</a>
+	     
+  2. 입력 또는 수정이 있는 경우
+ (form태그 + input(submit) 버튼 사용)
+  - <form id="사용할 아이디이름" method="GET" action="url 패턴"> 태그 안에서 아래 작성 
+       <input type="hidden or text" name="전송할 이름(key값)" value="입력한 값">
+       <select name="전송할 이름(key값)"><option value=""></option></select>
+       <textarea name="전송할 이름(key값)">value값</textarea>
+       <input type="checkbox or radio" name="전송할 이름(key값)"  value="입력한 값">
+  - 사용하는 클릭이벤트 : <input type="submit" value="보여지는값">
+
+ (form태그 + 버튼-자바스크립트 호출방식 사용)
+  - <form id="사용할 아이디이름" method="GET" action="#"> 태그 안에서 아래 작성 
+  - 사용하는 클릭이벤트 : <input type="button" value="보여지는값" onclick="자바스크립트 함수이름()">
+                                 : <button onclick="자바스크립트 함수이름()">보여지는값</button>
+  - 자바스크립트에 함수 정의
+     fm = document.getElementById("form태그 아이디 이름");
+     mem_id = fm.mem_id.value;
+     url = "/oracle/mem_view/?mem_id="+mem_id;
+     location.href = url;
+
+
+------------------ models.py 사용 방법 --------------
+1. 설정 하기
+  - config/settings.py 에서
+    >DATABASES = {"사용할DB별칭(oracle)" : { 접속 정보 작성 } , 
+                           "사용할DB별칭(mysql)" : { 접속 정보 작성 }, }
+    >DATABASE_ROUTERS = ["사용할앱이름(oracleapp).router.DBRouter", 
+			"사용할앱이름(secondapp).router.DBRouter",]
+      : router => router.py 파일을 의미
+      : DBRouter =>router.py 내에 class를 의미함
+
+  - 사용할app(oracleapp)에서
+    >router.py 파일 추가하기
+    >router.py 내에 : app_label의 값은 "사용할app이름(oracleapp)"으로 수정
+                         : return 값은 "사용할DB별칭(oracle)"으로 수정
+
+  - 사용할app(secondapp)에서
+    >router.py 파일 추가하기
+    >router.py 내에 : app_label의 값은 "사용할app이름(secondapp)"으로 수정
+                         : return 값은 "사용할DB별칭(mysql)"으로 수정
+
+2. models.py 파일 내에 사용할 테이블이름으로 클래스 생성하기
+ - 클래스 이름은 : 실제 DB에 존재하는 Table이름과 동일하게 (첫글자는 대문자로 시작)
+ - 클래스 안에 변수들 : 실제 Table 내에 존재하는 컬럼명과 동일하게 변수 선언
+                             : Type, size(mexlength), null여부 등도 실제 컬럼명의 정보와 동일하게..
+ - 내부 Meta 클래스 작성 : 클래스 안에 클래스를 넣는 방식(내부클래스)
+   > 실제 테이블 이름 정의 : db_table = "실제테이블이름(member)"
+   > 사용할 앱 이름 정의 : app_label = "현재위치한 app이름(oracleapp)"
+   > 실제 테이블 존재여부 : managed = 존재여부(Fasle or True)
+                                    --> 일반적으로 테이블을 만들어 놓고 진행하기 때문에...False 지정
+
+ - class 하나 생성 시 구조(회원테이블을 샘플로)
+   class Member(models.Model) :
+        컬럼 = CharField(max_length=11, null=False)
+        class Meta :
+	db_table = "member"
+             app_label = "oracleapp"
+             managed = False
+
+3. 컴파일 시키기 : models.py와 실제 DB의 Table과 소통하기 위함 언어로 변환하기
+ ==> 프롬프트 창에서 진행
+  >python manage.py makemigrations 현재app이름(oracleapp)
+  >python manage.py migrate
+
+ ==> 최초에 class가 생성되면 무조건 위 명령 실행해야 합니다.
+ ==> 이후 새로운 class가 추가되는 경우에도 위 명령 실행해야 합니다.
+ ==> 이미 명령이 실행된 class 내에서 일부 변경 사항이 일어나는 경우에는
+         -> 위 명령은 실행 안해도 일반적으로 적용이 되지만,
+             안되는 경우에는 위 명령을 실행해야 함
+
+ ==> 위 명령 실행 중 오류 발생이 나는 경우
+         -> 해당app 내에 폴더 이름 중 : migrations 폴더 내에 파일명 앞에 000이라는 숫자가 있는 파일 삭제
+                                                 : migrations/__pycache__ 폴더 내에 파일명 앞에 000이라는 숫자가 있는 파일 삭제
+         -> 위의 해당 파일 삭제 후 다시 위에 명령 실행
+         -> 삭제할 때 겁먹지 말기~~~!!
+
+
+----->> ORM 방식으로 데이터베이스를 처리할 경우에는 위의 설정부터 models.py 파일 사용해야함...
+           > Objects Relations Manage : 객체(class) 방식
+           > SQL 방식을 사용하지 않음
+
+------>> NonModel방식은 : ORM 방식이 아닌 SQL 방식을 그대로 사용
+
+
+
+
+------------oracleapp에서..-----------
+ * cart 테이블 형상 만들기 : models.py에서 진행
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* 회원정보 수정하기 폼페이지
+- views 함수명 : getMemUpdateForm()
+- /member/mem_update_form.html 생성
+- url 패턴 : mem_update_form
+
+
+> python manage.py makemigrations oracleapp
+> python manage.py migrate

@@ -100,6 +100,7 @@ DATABASES = {
 ### - 추가된 DB를 사용할 app 지정
 DATABASE_ROUTERS = [
     'oracleapp.router.DBRouter',
+    'secondapp.router.DBRouter',
 ]
 
 ### Logging 처리

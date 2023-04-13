@@ -16,23 +16,16 @@ from django.db.models.fields import IntegerField
 # - 테이블명, 컬럼명은 실제 이름과 동일하게 작성해야 함
 # - 테이블은 class로 생성, 컬럼명은 변수로 정의
 
-### 회원 정보 테이블
-class Member(models.Model):
-    mem_id = CharField(primary_key=True,
-                       max_length=5,null=False)
-mem_pass = CharField(max_length=15, null=False)
-mem_name = CharField(max_length=20, null=False)
-mem_add1 = CharField(max_length=100, null=False)
 
- ### 해당 클래스가 사용할 실제 테이블 및 앱 지정
+### 주문 정보(장바구니) cart 테이블 클래스 생성하기
+class Cart(models.Model):
+    ### cart_no만 PK로 지정
+    cart_member = CharField(max_length=15, null=False)
+    cart_no = CharField(primary_key=True, max_length=13, null=False)
+    cart_prod = CharField(max_length=10, null=False)
+    cart_qty = IntegerField(max_length=8, null=False)
+
 class Meta:
-    ### 실제 사용할 테이블 이름 정의
-    db_table = "member"
-
-   ### 사용할 앱 이름 정의
+    db_table = "cart"
     app_label = "secondapp"
-    ### 외부 데이터베이스에 테이블 존재 여부 확인
-    # 존재하면 False
-    # 존재하지 않으면 True
-    # => 일반적으로 외부에 테이블을 생성한 후 개발이 진행됨
     managed = False

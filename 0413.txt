@@ -1,0 +1,49 @@
+0413
+
+등록하기>
+
+입력 화면 
+- 순서(파라메터가 있는 경우 최초 이후 페이지) : 
+views.py 함수생성 > 파라메터 받기(POST or GET) > 
+models.py 데이터(CRUD) > templates/html 생성 > urls.py 패턴정의
+: html페이지에서 > 다음페이지로 연결할 url패턴을 정의(클릭 이벤트)
+(보통 버튼 처리가 추가되면서 다음페이지 url패턴 명시)
+
+저장 화면
+ - 순서(html 페이지를 만들지 않아도 되는 경우) : 
+views.py 함수생성 > 파라메터 받기(POST or GET) > 
+models.py 데이터(CRUD) > 
+views.py함수 내에서 자바스크립트 문자열로 생성(기존 URL패턴 사용) >
+HttpResponse()를 통해 처리
+
+
+주문(장바구니) 입력 폼 페이지
+- views 함수명:  getCartInsertForm()
+- cart_insert_form.html
+- url 패턴: cart_insert_form
+
+
+사용할 데이터
+*아이디: a001
+*주문 번호: 2005040100001
+*상품 코드: P302000003
+*주문 수량: 입력
+
+
+
+
+주문(장바구니) 입력 처리
+- views 함수명:  getCartInsert()
+- html 파일 없음
+- url 패턴: cart_insert
+
+
+
+
+
+
+
+
+
+
+

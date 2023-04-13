@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::주문(장바구니) 상세 조회:::</title>
+    <script type="text/javascript">
+        //  목록 가기
+        function goList(){
+            // alert("목록");
+            location.href = "/oracle/mem_cart_list/";  
+        }
+
+    </script>
+</head>
+<body>
+<!-- {{cart_no}} / {{cart_prod}} -->
+    <h2>주문(장바구니) 상세 조회</h2>
+    <hr/>
+    <p> * 주문번호: {{ cart_view.cart_no }}</p>
+    <p> * 회원 아이디: {{ cart_view.cart_member.mem_id }}</p>
+    <p> * 회원 이름: {{ cart_view.cart_member.mem_name }}</p>
+    <p> * 상품 코드: {{ cart_view.cart_prod }}</p>
+    <p> * 주문 수량: {{ cart_view.cart_qty }}</p>
+    <p> * 회원 주소1: {{ cart_view.cart_member.mem_add1 }}</p>
+    
+    <hr/>
+    <button onclick="goList()">목록</button>
+
+</body>
+</html>

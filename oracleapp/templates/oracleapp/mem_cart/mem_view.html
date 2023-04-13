@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::회원 관리 - 상세 조회:::</title>
+    <script type = "text/javascript">
+        // 목록 가기
+        function goList(){
+            // alert('목록');
+            // history.go(-1);
+            location.href = "/oracle/mem_list/";
+        }
+        // 수정 폼으로 가기
+        function goUpdateForm(mem_id){
+            // alert(mem_id);
+            url = "/oracle/mem_update_form/?";
+            url = url + "mem_id=" + mem_id;
+            location.href = url;
+        }
+        // 삭제하기
+        function goDelete(){
+            alert('삭제')
+        }
+    </script>
+</head>
+<body>
+    <h3>회원 관리 - 상세 조회</h3>
+    <hr/>
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>이름</th>
+            <th>주소1</th>
+        </tr>
+    <!-- [mem_list 형태]
+    ["mem_id":"a001", "mem_pass":"asdfasdf", "mem_name:"ㅌㅌㅌ", "mem_add1":"주소1",
+    "mem_id":"a002", "mem_pass":"asdfasdf1", "mem_name:"ㅌㅌ1", "mem_add1":"주소2",
+    {},
+    {},] -->
+
+        <tr>
+            <td>{{ mem_view.mem_id }}</td>
+            <td>{{ mem_view.mem_pass }}</td>
+            <td>{{ mem_view.mem_name }}</td>
+            <td>{{ mem_view.mem_add1 }}</td>
+        </tr>
+    </table>
+    <hr/>
+    <button onclick="goList()">목록 가기</button>
+    <button onclick="goUpdateForm('{{mem_id}}')">수정하기</button>
+    <button onclick="goDelete()">삭제하기</button>
+</body>
+</html>

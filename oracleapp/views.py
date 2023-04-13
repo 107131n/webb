@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Member, Cart
+from .models import Member, Cart, MemCart
 # Create your views here.
 
 ### oracleapp의 index 페이지
@@ -101,7 +101,7 @@ def getCartList(request):
         Select *
         From cart;
     """
-    cart_list = Cart.objects.all()
+    cart_list = Cart.objects.all().order_by("-cart_no")
     """
         <cart_list의 결과값의 모양(타입)>
         [{'cart_member':'a001','cart_no':'201901010100001',
@@ -223,3 +223,100 @@ def getCartDelete(request):
     </script>
     """
     return HttpResponse(msg)
+
+### 주문(장바구니) 정보 등록 폼 화면 처리
+def getCartInsertForm(request):
+    ### 1. 전달 받을 파라메터 있으면 받기(get or post)
+    ### 2. Model에서 CRUD 처리할 것이 있으면 처리(models.py)
+    ### 3. Templates: html 생성
+    ### 4. Model을 html 넘기기: return render()
+
+    # 1번: 없음
+    # 2번: 없음
+    # 3번: cart_insert_form.html 입력 화면 만들기
+    # 4번: 
+    return render(request,
+                  "oracleapp/cart/cart_insert_form.html",
+                  {})
+
+### 주문(장바구니) 정보 저장 처리하기
+def getCartInsert(request):
+    ### 1. 전달 받을 파라메터 있으면 받기(get or post)
+    ### 2. Model에서 CRUD 처리할 것이 있으면 처리(models.py)
+    ### 3. Templates: html 생성
+    ### 4. Model을 html 넘기기: return render()
+
+    # 1번: O 
+    cart_member = request.POST.get("cart_member","ERROR")
+    cart_prod = request.POST.get("cart_prod","ERROR")
+    cart_qty = request.POST.get("cart_qty","ERROR")
+    cart_no = request.POST.get("cart_no","ERROR")
+    
+    msg = "member={} / prod={} / qty={} / no={}".format(cart_member,
+                                                        cart_prod,
+                                                        cart_qty,
+                                                        cart_no)
+
+    # 2번: O 
+    """
+        Insert into cart
+            (cart_member, cart_prod, cart_qty, cart_no)
+        Values
+            (cart_member값, cart_prod값, cart_qty값, cart_no값)
+    """
+    Cart.objects.create(cart_member=cart_member,
+                        cart_prod=cart_prod,
+                        cart_qty=cart_qty,
+                        cart_no=cart_no)
+    # 3번: X 
+    msg = """
+        <script type = 'text/javascript'>
+        alert('잘 저장되었습니다.');
+        location.href = "/oracle/cart_list/";
+        </script>
+    """
+    # 4번: X 
+    return HttpResponse(msg)
+
+
+#################[member join cart]#################
+### 조인(join) 데이터를 사용하는 경우
+# - 여러 정보를 조회할 때 주로 join 사용
+# - 조회를 제외한 정보 입력/ 수정/ 삭제를 할 경우에는
+#   단일 class의 테이블 정보를 사용
+def getMemCartList(request):
+    cart_list = MemCart.objects.all().order_by("-cart_no")
+    return render(request,
+                  "oracleapp/mem_cart/cart_list.html",
+                  {"cart_list":cart_list})
+
+def getMemCartView(request):
+
+    cart_no = request.GET.get("cart_no", "ERROR")
+    cart_prod = request.GET.get("cart_prod", "ERROR")
+
+    cart_view = MemCart.objects.get(cart_no = cart_no,
+                                 cart_prod = cart_prod)
+    
+    return render(request,
+                  "oracleapp/mem_cart/cart_view.html",
+                  {"cart_no":cart_no,
+                  "cart_prod":cart_prod,
+                  "cart_view":cart_view})
+
+### 회원 상세 정보 보기
+def getMemView(request):
+    # 1번 처리: 전송 데이터 받기
+    mem_id = request.GET.get("mem_id", "ERROR")
+    # 2번 처리: models.py 클래스 사용
+    # mem_view = Member.objects.get(mem_id=mem_id)
+
+
+    # 조인이 이루어진 경우 여러건이 조회됨
+    mem_view = MemCart.objects.distinct().select_related().filter(cart_member__mem_id=mem_id)
+    
+    # 3번 처리: html 파일 생성하기
+    # 4번 처리
+    return render(request,
+                  "oracleapp/mem_cart/mem_view.html",
+                  {"mem_view":mem_view})
