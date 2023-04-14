@@ -59,4 +59,18 @@ urlpatterns = [
     ### http://127.0.0.1:8000/oracle/memview/
     path('memview/', views.getMemView),
 
+######################상품 정보(prod)#######################
+
+    ### http://127.0.0.1:8000/oracle/prod_list/
+    path('prod_list/', views.getProdList),
+
+    ### http://127.0.0.1:8000/oracle/prod_view/
+    path('prod_view/', views.getProdView),
+
+    ### http://127.0.0.1:8000/oracle/prod_update_form/
+    path('prod_update_form/', views.getProdUpdateForm),
+
+    ### http://127.0.0.1:8000/oracle/prod_update/
+    path('prod_update/', views.getProdUpdate),
+
 ]

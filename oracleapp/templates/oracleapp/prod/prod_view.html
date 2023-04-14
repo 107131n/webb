@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::상품 정보 - 상세 조회:::</title>
+    <script type="text/javascript">
+        // 목록 버튼 처리
+        function goList(){
+            location.href = '/oracle/prod_list/';
+        }
+        // 수정하기 폼으로 가기위한 버튼 처리
+        function goProdUpdateForm(prod_id){
+            url = "?prod_id="+ prod_id;
+            location.href = '/oracle/prod_update_form/'+url;
+        }
+    </script>
+</head>
+<body>
+    <h3>상품 정보 - 상세 조회</h3>
+    <hr/>
+            <p>* 상품 코드: {{prod_view.prod_id}}</p>
+            <p>* 상품명: {{prod_view.prod_name}}</p>
+            <p>* 상품 분류 코드: {{prod_view.prod_lgu}}</p>
+            <p>* 상품 거래처(공급 업체) 코드: {{prod_view.prod_buyer}}</p>
+            <p>* 매입가(금액): {{prod_view.prod_cost}}</p>
+            <p>* 소비자가(금액): {{prod_view.prod_price}}</p>
+            <p>* 판매가(금액): {{prod_view.prod_sale}}</p>
+    <hr/>
+
+    <button onclick="goList()">목록</button>
+    <button onclick="goProdUpdateForm('{{prod_view.prod_id}}')">수정</button>
+    <button>저장</button>
+
+</body>
+</html>
+

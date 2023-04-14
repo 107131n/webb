@@ -38,6 +38,36 @@ class Member(models.Model):
         # => 일반적으로 외부에 테이블을 생성한 후 개발이 진행됨
         managed = False
 
+### 상품정보(prod) 테이블 클래스 생성하기
+class Prod(models.Model):
+    # 상품 코드
+    prod_id = CharField(primary_key=True,max_length=10,null=False)
+    # 상품명
+    prod_name = CharField(max_length=40,null=False)
+    # 상품 분류 코드
+    prod_lgu = CharField(max_length=4,null=False)
+    # 거래처 코드
+    prod_buyer = CharField(max_length=6,null=False)
+    # 매입가
+    prod_cost = IntegerField(max_length=10,null=False)
+    # 소비자가
+    prod_price = IntegerField(max_length=10,null=False)
+    # 판매가
+    prod_sale = IntegerField(max_length=10,null=False)
+
+    class Meta:
+        ### 실제 사용할 테이블 이름 정의
+        db_table = "prod"
+
+        ### 사용할 앱 이름 정의
+        app_label = "oracleapp"
+
+        ### 외부 데이터베이스에 테이블 존재 여부 확인
+        # 존재하면 False
+        # 존재하지 않으면 True
+        # => 일반적으로 외부에 테이블을 생성한 후 개발이 진행됨
+        managed = False
+
 ### 주문 정보(장바구니) cart 테이블 클래스 생성하기
 class Cart(models.Model):
     ### member 테이블과 cart 테이블 연결하기(Member=Cart)
@@ -99,6 +129,34 @@ class MemCart(models.Model):
     ### cart_no만 PK로 지정
     cart_no = CharField(primary_key=True, max_length=13, null=False)
     cart_prod = CharField(max_length=10, null=False)
+    cart_qty = IntegerField(max_length=8, null=False)
+
+    class Meta:
+        ### 실제 사용할 테이블 이름 정의
+        db_table = "cart"
+
+        ### 사용할 앱 이름 정의
+        app_label = "oracleapp"
+
+        ### 외부 데이터베이스에 테이블 존재 여부 확인
+        # 존재하면 False
+        # 존재하지 않으면 True
+        # => 일반적으로 외부에 테이블을 생성한 후 개발이 진행됨
+        managed = False
+
+### 주문(장바구니) + 회원 정보 + 상품 정보 연결
+class CartMemberProd(models.Model):
+    cart_member = models.ForeignKey(Member,
+                                    to_field="mem_id",
+                                    db_column="cart_member",
+                                    on_delete=models.PROTECT)
+    ### cart_no만 PK로 지정
+    cart_no = CharField(primary_key=True, max_length=13, null=False)
+    # cart_prod = CharField(max_length=10, null=False)
+    cart_prod = models.ForeignKey(Prod,
+                                    to_field="prod_id",
+                                    db_column="cart_prod",
+                                    on_delete=models.PROTECT)
     cart_qty = IntegerField(max_length=8, null=False)
 
     class Meta:

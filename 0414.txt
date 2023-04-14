@@ -1,0 +1,77 @@
+0414
+
+    except:
+        msg = """
+            <script type = "text/javascript">
+                alert('잘못된 접근입니다.');
+                location.href = "/oracle/mem_list/";
+            </script>
+        """
+        return HttpResponse(msg)
+
+
+=========oracleapp에서===========
+
+models.py에서
+prod 테이블 추가하기
+class Prod
+
+models.py 클래스 생성 후 아래 실행
+python manage.py makemigrations oracleapp
+python manage.py migrate
+
+runserver 후 오류 발생하는지 확인
+
+
+
+prod 테이블 사용
+
+* 상품 전체 조회하기
+- views 함수명: getProdList()
+- templates/prod/prod_list.html
+: 상품 코드, 상품명 조회
+- url 패턴: prod_list
+- oracleapp/index에 위 url 추가
+
+
+* 상품 상세 조회하기
+- views 함수명: getProdView()
+- templates/prod/prod_view.html
+: 모두 조회
+- url 패턴: prod_view
+
+
+
+==> 상세보기 페이지에서
+==> [목록][수정] 버튼 생성 후 처리
+
+* 상품 목록 가기 버튼 처리
+* 상품 수정하기 폼 처리
+- views 함수명: getProdUpdateForm()
+- templates/prod/prod_update_form.html
+: 수정 항목 상품명, 매입가, 소비자가, 판매가
+- url 패턴: prod_update_form
+- [저장] 버튼 생성까지만 
+
+
+* 상품 수정(저장) 처리하기
+- views 함수명: getProdUpdate()
+- html 파일 생성 없음
+- url 패턴: prod_update
+
+
+
+
+
+
+=================cart+member+prod===================
+* 회원+주문정보+상품 정보 조회
+- views 함수명: getCartMenProdList()
+- templates/cart_mem_prod/cart_mem_prod_list.html
+: 회원 이름, 상품명, 주문 번호, 주문 수량
+- url 패턴: cart_mem_prod_list
+- oracle index 페이지에 위 url 추가해서 시작
+
+
+
+

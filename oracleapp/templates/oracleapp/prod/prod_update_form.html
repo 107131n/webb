@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::상품 정보 - 수정하기:::</title>
+    <script type="text/javascript">
+        // 취소 버튼 처리하기
+       function goBack(){
+        history.go(-1);
+       }
+
+    </script>
+</head>
+<body>
+    <form id="fm" name="fm" method="post" action='/oracle/prod_update/'>
+        {% csrf_token %}
+        <input type="hidden" name="prod_id" value="{{ prod_id }}">
+    <h3>상품 정보 - 수정하기</h3>
+    <hr/>
+            <p>* 상품 코드: {{prod_view.prod_id}}</p>
+            <p>* 상품명: <input type="text" name="prod_name"
+                value="{{prod_view.prod_name}}" size="25"></p>
+            <p>* 상품 분류 코드: {{prod_view.prod_lgu}}</p>
+            <p>* 상품 거래처(공급 업체) 코드: {{prod_view.prod_buyer}}</p>
+            <p>* 매입가(금액): <input type="text" name="prod_cost"
+                value="{{prod_view.prod_cost}}" size="8">원</p>
+            <p>* 소비자가(금액): <input type="text" name="prod_price"
+                value="{{prod_view.prod_price}}" size="8">원</p>
+            <p>* 판매가(금액): <input type="text" name="prod_sale"
+                value="{{prod_view.prod_sale}}" size="8">원</p>
+
+    <hr/>
+            
+    <input type="button" value="취소" onclick="goBack()">
+    <input type="submit" value="저장">
+
+</form>
+</body>
+</html>
