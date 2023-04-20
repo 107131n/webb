@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::로그인 폼 페이지:::</title>
+    <script type ="text/javascript">
+
+    </script>
+</head>
+<body>
+<form id="fm" name="fm" method="post" action="/nonmodel/login_chk/">
+    {%csrf_token%}
+    <h3>로그인 처리</h3>
+    <hr/>
+    <p>
+        회원 아이디 : <input type="text" name="mem_id" required>
+    </p>
+    <p>
+        회원 패스워드 : <input type="password" name="mem_pass" required>
+    </p>
+    <hr/>
+    <input type="submit" value="로그인">
+</form>
+
+
+</body>
+</html>

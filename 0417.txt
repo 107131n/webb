@@ -1,0 +1,49 @@
+0417
+
+==================nonmodelapp=====================
+
+* nonmodelapp 생성하기 -> django-admin startapp nonmodelapp
+=> config.py-settings.py-INSTALLED_APPS에 'nonmodelapp', 추가
+      urls.py에 ### http://127.0.0.1:8000/nonmodel/
+      path('nonmodel/', include('nonmodelapp.urls')), 추가(:패턴으로 분리)
+
+* templates: index.html 파일 생성 
+
+* views.py: index() 함수 생성
+-> from django.http import HTTPResponse 추가
+def index(request):
+    return render(request,
+                  "nonmodelapp/index.html",
+                  {})
+- 내용은 제목만 <h3>Nonmodel<h3>
+
+* url 패턴: "" 또는 "index/" 모두 허용되도록
+urlpatterns = [
+    ### http://127.0.0.1:8000/nonmodel/
+    path('', views.index),
+
+    ### http://127.0.0.1:8000/nonmodel/index/
+    path('index/', views.index),
+]
+
+-----------------------------------------------
+회원 전체 조회
+* model_db/member.member.py에
+getMemberList() 함수 생성: SQL 구문 완성
+* views.py: getMemberList() 함수 생성
+* templates/member: mem_list.html 파일 생성
+* url 패턴: mem_list
+
+
+* model_db/ cart/ cart.py 파일 생성
+-> sql 구문만 작성하면 됨
+-> 함수 이름
+	**  입력: setCartInsert()
+	** 삭제: setCartdelete()
+
+* views.py에서 기존(oracleapp)의 주문 정보 함수 복사해서 사용
+* templates/cart/기존(oracleapp)의 html 복사 사용
+ * urls.py 패턴 정의(기존과 동일한 패턴 이름 사용)
+
+
+

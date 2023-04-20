@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::회원 관리 - 전체 조회:::</title>
+    <script type = "text/javascript">
+        // 회원 상세 페이지 가기
+        function goView(mem_id){
+            // alert(mem_id);
+            url = "/nonmodel/mem_view/?";
+            url = url + "mem_id=" + mem_id;
+            // alert(url);
+            // get 방식으로 전송 시에는 location.href 사용
+            location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <h3>회원 관리 - 전체 조회</h3>
+    <hr/>
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>이름</th>
+            <th>주소1</th>
+        </tr>
+    <!-- [mem_list 형태]
+    ["mem_id":"a001", "mem_pass":"asdfasdf", "mem_name:"ㅌㅌㅌ", "mem_add1":"주소1",
+    "mem_id":"a002", "mem_pass":"asdfasdf1", "mem_name:"ㅌㅌ1", "mem_add1":"주소2",
+    {},
+    {},] -->
+    {%for mem in mem_list%}
+        <tr>
+            <td>{{ mem.mem_id }}</td>
+            <td>{{ mem.mem_pass }}</td>
+            <td><a href="javascript:goView('{{ mem.mem_id }}');">
+                {{ mem.mem_name }}</a></td>
+            <td>{{ mem.mem_add1 }}</td>
+        </tr>
+    {%endfor%}
+    </table>
+
+</body>
+</html>

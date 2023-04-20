@@ -171,7 +171,7 @@ urlpatterns = [
 1. view.py 함수 생성
 - html 파일 지정
 
-2. templatets > xxxapp
+2. templates > xxxapp
 - html 생성
 
 3. xxxapp / urls.py

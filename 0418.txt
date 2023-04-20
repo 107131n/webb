@@ -1,0 +1,41 @@
+0418
+
+<NonModel 생성 순서>
+
+model_db_class 폴더 생성
+- db_util_def.py  > DB_Util 클래스 생성
+- db_sql.py에서 DB_Util 사용을 위해 import하여 사용
+- member 폴더 생성
+	- member.py 파일 생성하여 회원 관리와 관련한 기능 함수를 생성하여 사용
+		- db_sql.py 내에 함수를 사용하기 위해 import하여 사용
+- cart 폴더 생성
+	- cart.py 파일 생성하여 주문(장바구니)과 관련한 기능 함수를 생성하여 사용
+		-db_sql.py 내에 함수를 사용하기 위해 import하여 사용
+ 
+
+<NonModel 접근 순서>
+- views.py에서 각 기능 member.py 또는 cart.py에 있는 DB 처리 함수 호출을 위해 import하여 사용(추가할 기능이 있으면 member.py에 함수 생성 후 호출하여 사용)
+	- views.py에서 데이터 받기(get, post), templates는 위에 nonmodel과 무관
+	- MVT 중에 M만 처리하는 부분이 nonmodel 영역임
+
+
+----------------------------------------------
+로그아웃 처리
+
+* views.py: logout_chk() 함수 생성
+* templates 없음
+	- HttpResponse('로그아웃 페이지')
+* url 패턴: logout_chk
+
+
+--------------------------------
+thirdapp에 nonmodel 방식으로 
+
+- 주문 정보(장바구니) 조회, 상세 조회, 수정, 삭제, 입력 처리
+- 로그인, 로그아웃 처리
+
+
+
+
+
+

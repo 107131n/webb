@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'mainapp',
     'frontapp',
     'oracleapp',
+    'nonmodelapp',
+    'thirdapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -169,3 +171,15 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+### 로그인 상태에서 브라우저가 닫혔을 때, 세션 정보 삭제하기
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+###### Google Email SMTP 설정하기 ######
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = '107131n@gmail.com'
+EMAIL_HOST_PASSWORD = 'tokrbtgxdnaehpby'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

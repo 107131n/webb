@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::주문(장바구니) 상세 조회:::</title>
+    <script type="text/javascript">
+        //  목록 가기
+        function goList(){
+            // alert("목록");
+            location.href = "/nonmodel/cart_list/";  
+        }
+        // 수정 폼으로 가기
+        function goUpdateForm(cart_no, cart_prod){
+            // alert(cart_no + "/" + cart_prod);
+            url = "/nonmodel/cart_update_form/?";
+            url = url + "cart_no=" + cart_no;
+            url = url + "&cart_prod=" + cart_prod;
+            location.href = url;
+        }
+        // 삭제 하기
+        function goDelete(cart_no, cart_prod){
+            // alert(cart_no + "/" + cart_prod);
+            url = "/nonmodel/cart_delete/?"
+            url = url + "cart_no=" + cart_no;
+            url = url + "&cart_prod=" + cart_prod;
+            // alert(url);
+            location.href = url;
+        }
+    </script>
+</head>
+<body>
+<!-- {{cart_no}} / {{cart_prod}} -->
+    <h2>주문(장바구니) 상세 조회</h2>
+    <hr/>
+    <p> * 주문 번호: {{ cart_view.cart_no }}</p>
+    <p> * 회원 아이디: {{ cart_view.cart_member }}</p>
+    <p> * 상품 코드: {{ cart_view.cart_prod }}</p>
+    <p> * 주문 수량: {{ cart_view.cart_qty }}</p>
+    
+    <hr/>
+    <button onclick="goList()">목록</button>
+    <button onclick="goUpdateForm('{{cart_no}}', '{{cart_prod}}')">수정</button>
+    <button onclick="goDelete('{{cart_no}}', '{{cart_prod}}')">삭제</button>
+</body>
+</html>

@@ -59,6 +59,13 @@ urlpatterns = [
 
     ### http://127.0.0.1:8000/oracle/
     path('oracle/', include('oracleapp.urls')),
+
+    ### http://127.0.0.1:8000/nonmodel/
+    path('nonmodel/', include('nonmodelapp.urls')),
+
+    ### http://127.0.0.1:8000/third/
+    path('third/', include('thirdapp.urls')),
+
           
     # path('admin/', admin.site.urls),
 ]

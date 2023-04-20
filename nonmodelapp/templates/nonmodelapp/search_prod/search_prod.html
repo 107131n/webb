@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::검색으로 상품 상세 조회:::</title>
+    <script type="text/javascript">
+        // 상품 분류 또는 상품의 selectbox가 선택이 되면
+        // 호출되는 함수로 사용
+        function goProdList(mode){
+            fm = document.getElementById("fm");
+            
+            // 상품 분류 selectbox가 선택이 되면
+            // - 상품 코드의 값은 초기화("") 해야 함
+            if (mode == "lprod"){
+                fm.prod_id.value = "";
+            }
+
+            fm.action = "/nonmodel/search_prod/"
+            fm.submit();
+        }
+        // html 페이지가 열릴 때마다 최초 실행하는 함수
+        // - 선택된 값이 있으면 선택된 값을 유지하기
+        function init_lprod_selected(lprod_gu){
+            fm = document.getElementById("fm");
+            for(i=0; i<fm.lprod_gu.options.length; i++){
+                // 저장 데이터와 같은 option 선택하기
+                if (fm.lprod_gu.options[i].value == lprod_gu){
+                    fm.lprod_gu.options[i].selected = true;
+                    break;
+                }
+            }
+        }
+        function init_prod_selected(prod_id){
+            fm = document.getElementById("fm");
+            for(i=0; i<fm.prod_id.options.length; i++){
+                // 저장 데이터와 같은 option 선택하기
+                if (fm.prod_id.options[i].value == prod_id){
+                    fm.prod_id.options[i].selected = true;
+                    break;
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="init_lprod_selected('{{lprod_gu}}');
+              init_prod_selected('{{prod_id}}');">
+    <form id= "fm" name = "fm" method = "get" action="#">
+    <h3>검색으로 상품 상세 조회</h3>
+    <hr/>
+    <table>
+        <tr>
+            <th>상품 분류 선택</th>
+            <td>
+                                        <!-- 클릭 시 값이 바뀌어야 하면 onchange -->
+                <select name="lprod_gu" onchange="goProdList('lprod')">
+                    {% for data in lprod_selbox %}
+                        
+                        <option value="{{data.lprod_gu}}">{{data.lprod_nm}}</option>
+                            
+                    {% endfor %}
+                </select>
+            </td>
+            <th>상품 선택</th>
+            <td>
+                <select name="prod_id" onchange="goProdList('prod')">
+                    {% for data in prod_selbox %}
+
+                    <option value="{{data.prod_id}}">{{data.prod_name}}</option>
+                    
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+
+    <table border="1" height="250">
+        <tr>
+            <th width = "200">상품 분류명</th>
+            <td width = "300">{{prod_view.lprod_nm}}</td>
+        </tr>
+        <tr>
+            <th>상품명</th>
+            <td>{{prod_view.prod_name}}</td>
+        </tr>
+        <tr>
+            <th>판매 가격</th>
+            <td>{{prod_view.prod_sale}}원</td>
+        </tr>
+        <tr>
+            <th>판매자명(거래처명)</th>
+            <td>{{prod_view.buyer_name}}</td>
+        </tr>
+        <tr>
+            <th>판매자(거래처) 주소</th>
+            <td>{{prod_view.buyer_add1}}</td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

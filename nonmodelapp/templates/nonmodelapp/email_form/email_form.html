@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::이메일 작성하기:::</title>
+</head>
+<body>
+<form id = "fm" name = "fm" method = "post" action="/nonmodel/email_send/">
+    {% csrf_token %}
+    <h3>이메일 작성하기</h3>
+    <hr/>
+    <table>
+        <tr>
+            <th>전달할 이메일 주소</th>
+            <td>
+                <input type="text" name="emails" 
+                size="50" required>
+            </td>
+        </tr>
+        <tr>
+            <th>이메일 제목</th>
+            <td>
+                <input type="text" name="title" 
+                size="50" required>
+            </td>
+        </tr>
+        <tr>
+            <th>이메일 내용</th>
+            <td>
+                <textarea name="content" rows="20"
+                          cols="48" required></textarea>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+    <input type="submit" value="메일 발송">
+</form>
+</body>
+</html>

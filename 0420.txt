@@ -1,0 +1,107 @@
+0420
+
+NonModel
+
+view
+cart_list 
+
+cart
+member def 복사해서  cart로 수정
+
+-model 처리
+
+view
+맨 위 from nonmodelapp.model_db_class.cart import cart
+### ORM
+#cart_list = Cart.objects.all().order_by("-cart_no")
+
+### NonModel
+cart_list = cart.getCartList()
+
+url
+### http://127.0.0.1:8000/nonmodel/cart_list/
+path('cart_list/', views.getCartList),
+
+index
+<h3>주문 관리</h3>
+<hr/>
+*주문 관리: <a href="/nonmodel/cart_list/">[바로 가기]</a>
+<br/>
+
+
+cart_list
+url nonmodel로 변경
+
+
+
+----------------nonmodelapp에서-------------------
+
+### 상품 검색에 따른 상품 상세 조회
+
+#model_db_class / lprod/ lprod.py(상품 분류 정보만 처리)
+#model_db_class /join/ join.py(조인되는 모든 것 처리)
+
+-- 상품 분류명: selectbox에 들어갈 내용 조회
+-- 테이블: lprod
+-- model_db_class / lprod/ lprod.py(상품 분류 정보만 처리)
+
+
+-- 상품명: 선택된 상품 분류에 대한 selectbox에 들어갈 내용 조회
+-- 테이블: lprod, prod
+-- model_db_class/join/join.py(조인되는 모든 것 처리)
+
+
+-- 선택된 상품 분류 및 상품에 대한 상세 정보 조회
+-- 조회 테이블: lprod, prod, buyer
+-- model_db_class/join/join.py(조인되는 모든 것 처리)
+
+
+view
+search_prod
+url
+index
+
+
+----------------------------------------------
+
+thirdapp에 search_prod 적용
+
+
+---------------------------------------------
+
+* 메일 발송 처리하기
+
+1. 구글 SMTP를 통해서 발송
+ - 본인 구글 계정을 통해서 발송됨
+ - Web Server에서 > 구글 메일 서버 > 발송
+
+
+2. http://myaccount.google.com/security
+ - 2단계 인증 > 패스워드 입력 > 폰 인증
+ - [앱 비밀번호] 생성 > Windows 컴퓨터용 앱 비밀번호 파일 저장
+
+
+3. settings.py에 설정
+###### Google Email SMTP 설정하기 ######
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = '본인 이메일 계정'
+EMAIL_HOST_PASSWORD = '앱 비밀번호'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

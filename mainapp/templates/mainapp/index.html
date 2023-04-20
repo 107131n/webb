@@ -10,19 +10,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>:::Main Index Page:::</title>
+    <script type="text/javascript">
+        // 로그아웃 버튼 처리하기
+        function goLogout(){
+            location.href = "/nonmodel/logout_chk";
+        }
+    </script>
 </head>
 <!--브라우저에 보여지는 모든 것
 - css, javascript 정의도 가능
 -->
 <body>
+    <h2>사이트 메인 페이지</h2>
     <!--제목 태그-->
-    <h1>:::Index Page h1:::</h1>
+    <!-- <h1>:::Index Page h1:::</h1>
     <h2>:::Index Page h2:::</h2>
     <h3>:::Index Page h3:::</h3>
     <h4>:::Index Page h4:::</h4>
-    <h5>:::Index Page h5:::</h5>
+    <h5>:::Index Page h5:::</h5> -->
     <!-- 주석 -->
     <!--선 긋기-->
+    <hr/>
+    <!-- 로그인/ 로그아웃 처리하기 -->
+    {% if request.session.ses_mem_id == None %}
+        <form id="fm" name="fm" method="post" action="/nonmodel/login_chk/">
+            {%csrf_token%}
+            아이디 : <input type="text" name="mem_id" required>
+            패스워드 : <input type="password" name="mem_pass" required>
+
+            <input type="submit" value="로그인">
+        </form>
+    {% else %}
+        {{request.session.ses_mem_id}}({{request.session.ses_mem_name}})님
+        환영합니다. 
+
+        <!-- 로그아웃 버튼 만들기 -->
+        <button onclick="goLogout()">로그아웃</button>
+    {% endif %}
+
     <hr/>
 
     <!--페이지 이동: 링크 처리
@@ -32,11 +57,15 @@
     FisrtApp: <a href="/first/">[바로 가기]</a>
     <br/>
     SecondApp: <a href="/second/">[바로 가기]</a>
-    <br>
+    <br/>
     MainApp: <a href="/main/main/">[바로 가기]</a>
-    <br>
+    <br/>
     FrontApp: <a href="/front/">[바로 가기]</a>
-    <br>
+    <br/>
     OracleApp: <a href="/oracle/">[바로 가기]</a>
+    <br/>
+    NonModelApp: <a href="/nonmodel/">[바로 가기]</a>
+    <br/>
+    ThirdApp: <a href="/third/">[바로 가기]</a>
 </body>
 </html>
